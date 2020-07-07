@@ -1,5 +1,5 @@
 //
-//  PeopleScroll.swift
+//  OtherView.swift
 //  OutToEat
 //
 //  Created by Zack Smalley on 7/7/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct PeopleScroll: View {
+struct OtherView: View {
     var body: some View {
-        Text("This page will have a list of people")
+        Text("This page will have other stuff to do. Idk what yet")
     }
 }
 
-struct PeopleScroll_Previews: PreviewProvider {
+struct OtherView_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleScroll()
+        OtherView()
     }
 }
