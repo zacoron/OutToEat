@@ -2,7 +2,7 @@
 //  RestaurantAdd.swift
 //  OutToEat
 //
-//  Created by Zack Smalley on 7/6/20.
+//  Created by Zack Smalley on 7/6/20
 //  Copyright © 2020 Zack Smalley. All rights reserved.
 //
 
