@@ -13,7 +13,7 @@ struct ContentView: View {
            
         
         VStack() {
-            RestaurantScroll()        
+            RestaurantScroll()
             
            
         }

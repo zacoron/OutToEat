@@ -15,6 +15,8 @@
 		1404B1F524B3DFA000AB87E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1404B1F324B3DFA000AB87E9 /* LaunchScreen.storyboard */; };
 		1404B1FF24B3F92C00AB87E9 /* RestaurantScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B1FE24B3F92C00AB87E9 /* RestaurantScroll.swift */; };
 		1404B20524B4149F00AB87E9 /* RestaurantAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B20424B4149F00AB87E9 /* RestaurantAdd.swift */; };
+		1404B20924B44E4900AB87E9 /* RestaurantInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B20824B44E4900AB87E9 /* RestaurantInfo.swift */; };
+		1404B20B24B45D1C00AB87E9 /* RestaurantEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B20A24B45D1C00AB87E9 /* RestaurantEdit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		1404B1F624B3DFA000AB87E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1404B1FE24B3F92C00AB87E9 /* RestaurantScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantScroll.swift; sourceTree = "<group>"; };
 		1404B20424B4149F00AB87E9 /* RestaurantAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAdd.swift; sourceTree = "<group>"; };
+		1404B20824B44E4900AB87E9 /* RestaurantInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfo.swift; sourceTree = "<group>"; };
+		1404B20A24B45D1C00AB87E9 /* RestaurantEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantEdit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				1404B1EC24B3DF9E00AB87E9 /* ContentView.swift */,
 				1404B20424B4149F00AB87E9 /* RestaurantAdd.swift */,
 				1404B1FE24B3F92C00AB87E9 /* RestaurantScroll.swift */,
+				1404B20824B44E4900AB87E9 /* RestaurantInfo.swift */,
+				1404B20A24B45D1C00AB87E9 /* RestaurantEdit.swift */,
 				1404B1EE24B3DFA000AB87E9 /* Assets.xcassets */,
 				1404B1F324B3DFA000AB87E9 /* LaunchScreen.storyboard */,
 				1404B1F624B3DFA000AB87E9 /* Info.plist */,
@@ -155,7 +161,9 @@
 				1404B1E924B3DF9E00AB87E9 /* AppDelegate.swift in Sources */,
 				1404B1EB24B3DF9E00AB87E9 /* SceneDelegate.swift in Sources */,
 				1404B1ED24B3DF9E00AB87E9 /* ContentView.swift in Sources */,
+				1404B20B24B45D1C00AB87E9 /* RestaurantEdit.swift in Sources */,
 				1404B1FF24B3F92C00AB87E9 /* RestaurantScroll.swift in Sources */,
+				1404B20924B44E4900AB87E9 /* RestaurantInfo.swift in Sources */,
 				1404B20524B4149F00AB87E9 /* RestaurantAdd.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

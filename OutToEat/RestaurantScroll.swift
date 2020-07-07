@@ -10,9 +10,9 @@ import SwiftUI
 
 struct Restaurant: Identifiable, Codable {
     let id = UUID()
-    let name: String
-    let type: String
-    let notes: String
+    var name: String
+    var type: String
+    var notes: String
     // let amount: Int
 }
 
@@ -49,15 +49,16 @@ struct RestaurantScroll: View {
         NavigationView {
             List {
                 ForEach(restaurants.items) { item in // items are identifiable so no need to specify id
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.type)
+                    NavigationLink(destination: RestaurantInfo(restaurant: item)) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.title)
+                            }
+                            Spacer()
+                            Image(systemName: "right")
+                                .font(.title)
                         }
-                        
-                        Spacer()
-                        Text("\(item.notes)")
                     }
                 }
                 .onDelete(perform: removeItems)
@@ -79,6 +80,7 @@ struct RestaurantScroll: View {
     func removeItems(at offsets: IndexSet) {
         restaurants.items.remove(atOffsets: offsets)
     }
+   
 }
 
 
