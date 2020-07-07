@@ -12,7 +12,8 @@ struct Restaurant: Identifiable, Codable {
     let id = UUID()
     let name: String
     let type: String
-    let amount: Int
+    let notes: String
+    // let amount: Int
 }
 
 class Restaurants: ObservableObject {
@@ -56,7 +57,7 @@ struct RestaurantScroll: View {
                         }
                         
                         Spacer()
-                        Text("$\(item.amount)")
+                        Text("\(item.notes)")
                     }
                 }
                 .onDelete(perform: removeItems)

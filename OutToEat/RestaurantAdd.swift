@@ -12,16 +12,22 @@ struct RestaurantAdd: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var restaurants: Restaurants
     @State private var name = ""
-    @State private var type = "Chinese"
-    @State private var amount = ""
-    static let types = ["Chinese", "American", "Italian"]
+    @State private var type = ""
+    @State private var notes = ""
+    // @State private var amount = ""
+    // static let types = ["Chinese", "American", "Italian"]
     
     var body: some View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
                 
-                Picker("Type", selection: $type) {
+                TextField("Type (optional)", text: $type)
+                
+                TextField("Notes (optional)", text: $notes)
+                
+                /*
+                Picker("Type (optional)", selection: $type) {
                     ForEach(Self.types, id: \.self) {
                         Text($0)
                     }
@@ -29,13 +35,14 @@ struct RestaurantAdd: View {
                 
                 TextField("Amount", text: $amount)
                     .keyboardType(.numberPad)
+                */
             }
             .navigationBarTitle("Add New Restaurant")
             .navigationBarItems(trailing:
                 Button("Save") {
-                    if let actualAmount = Int(self.amount)
+                    if !self.name.isEmpty
                     {
-                        let item = Restaurant(name: self.name, type: self.type, amount: actualAmount)
+                        let item = Restaurant(name: self.name, type: self.type, notes: self.notes)
                         self.restaurants.items.append(item)
                         self.presentationMode.wrappedValue.dismiss()
                     }
