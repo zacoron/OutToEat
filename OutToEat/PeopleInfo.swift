@@ -31,6 +31,24 @@ struct PeopleInfo: View {
             
             Divider()
             
+            VStack {
+                HStack {
+                    Text("Favorites:").font(.title)
+                    Spacer()
+                    Button("Add Favorite") {
+                        self.people.addFavorite(newFavorite: String(self.person.favorites.count), index: self.people.items.firstIndex(of: self.person)!)
+                    }
+                }.padding(.horizontal, 10)
+                
+                
+                List {
+                    ForEach(person.favorites, id: \.self) { item in
+                        Text(item)
+                    }
+                }
+                
+            }
+            
             Spacer()
             
         } // end VStack
