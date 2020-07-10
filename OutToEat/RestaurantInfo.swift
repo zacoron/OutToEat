@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct RestaurantInfo: View {
-    // @ObservedObject var restaurants: Restaurants
+    @ObservedObject var restaurants: Restaurants
     var restaurant: Restaurant
     @State private var showingRestaurantEdit = false
     
     var body: some View {
-        NavigationView {
+        // NavigationView {
             VStack {
                 HStack {
                     Text("Name:")
@@ -51,25 +51,29 @@ struct RestaurantInfo: View {
             }
             .navigationBarTitle("Info")
             .navigationBarItems(trailing:
-                Button(action: {
-                    self.showingRestaurantEdit = true
-                }) {
-                    Text("Edit").font(.largeTitle)
+                NavigationLink(destination: RestaurantEdit(restaurant: restaurant)) {
+                    Text("Edit")
+                        .font(.largeTitle)
+                    /*
+                    Button(action: {
+                        self.showingRestaurantEdit = true
+                    }) {
+                        Text("Edit").font(.largeTitle)
+                    }
+                    */
                 }
+                    
             )
             // .sheet(isPresented: $showingRestaurantEdit) {
                 // RestaurantAdd(restaurants: restaurants) // restaurant: self.restaurant)
             // }
-        }
-        
-        
-    
-        
+        // }
     }
 }
 
 struct RestaurantInfo_Previews: PreviewProvider {
+    // @ObservedObject var restaurants: Restaurants
     static var previews: some View {
-        RestaurantInfo(restaurant: Restaurant(name: "", type: "", notes: ""))
+        RestaurantInfo(restaurants: Restaurants(), restaurant: Restaurant(name: "", type: "", notes: ""))
     }
 }

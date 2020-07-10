@@ -5,15 +5,17 @@
 //  Created by Zack Smalley on 7/7/20.
 //  Copyright © 2020 Zack Smalley. All rights reserved.
 //
-/*
+
 import SwiftUI
 
 struct RestaurantEdit: View {
+    var restaurant: Restaurant
+    
+    @State var name = ""
+    @State var type = ""
+    @State var notes = ""
+    
     @Environment(\.presentationMode) var presentationMode
-    @State var restaurant: Restaurant?
-    @State private var name: String
-    @State private var type: String
-    @State private var notes: String
     
     /*
     init() {
@@ -24,33 +26,73 @@ struct RestaurantEdit: View {
  */
     
     var body: some View {
-        NavigationView {
-            Form {
-                TextField("Name", text: $restaurant.name)
+        // NavigationView {
+            VStack {
+                Divider()
+                    .padding(.vertical, 20)
                 
-                TextField("Type (optional)", text: $restaurant.type)
+                HStack {
+                    Text("Name:")
+                        .font(.title)
+                    Spacer()
+                    Text(restaurant.name)
+                        .font(.title)
+                }
                 
-                TextField("Notes (optional)", text: $restaurant.notes)
+                Divider()
                 
+                HStack {
+                    Text("Type:")
+                        .font(.title)
+                    Spacer()
+                    Text(restaurant.type)
+                        .font(.title)
+                }
+                
+                Divider()
+                
+                HStack {
+                    Text("Notes:")
+                        .font(.title)
+                    Spacer()
+                    Text(restaurant.notes)
+                        .font(.title)
+                }
+                
+                Form {
+                    TextField("Name", text: $name)
+                    
+                    TextField("Type (optional)", text: $type)
+                    
+                    TextField("Notes (optional)", text: $notes)
+                    
+                }
+                
+                Spacer()
             }
-            .navigationBarTitle("Edit Restaurant")
-            .navigationBarItems(trailing:
-                Button("Save") {
-                    if !self.name.isEmpty
-                    {
-                        self.restaurant = Restaurant(name: self.name, type: self.type, notes: self.notes)
-                        // restaurant.name = self.name
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                }.font(.largeTitle))
-        }
+            .navigationBarTitle("Editing: \(restaurant.name)" )
+            .navigationBarItems(
+                trailing:
+                    Button("Save") {
+                        if !self.name.isEmpty
+                        {
+                            // restaurant = Restaurant(name: name, type: type, notes: notes)
+                            // restaurant.updateName(newName: "hi")
+                            // self.restaurant.updateName(newName: self.name)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }.font(.largeTitle))
+            
+        // }
     }
+    
+    
 }
 
 
 struct RestaurantEdit_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantEdit() // restaurant: Restaurant(name: "", type: "", notes: ""))
+        RestaurantEdit(restaurant: Restaurant(name: "", type: "", notes: ""))
     }
 }
- /**/*/
+

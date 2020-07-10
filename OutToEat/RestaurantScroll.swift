@@ -14,6 +14,10 @@ struct Restaurant: Identifiable, Codable {
     var type: String
     var notes: String
     // let amount: Int
+    
+    public mutating func updateName(newName: String) {
+        self.name = newName
+    }
 }
 
 class Restaurants: ObservableObject {
@@ -39,6 +43,10 @@ class Restaurants: ObservableObject {
         // else initialize to empty array
         self.items = []
     }
+    
+    public func setName(newName: String, index: Int) {
+        items[index].updateName(newName: newName)
+    }
 }
 
 struct RestaurantScroll: View {
@@ -49,15 +57,14 @@ struct RestaurantScroll: View {
         NavigationView {
             List {
                 ForEach(restaurants.items) { item in // items are identifiable so no need to specify id
-                    NavigationLink(destination: RestaurantInfo(restaurant: item)) {
+                    NavigationLink(destination: RestaurantInfo(restaurants: self.restaurants, restaurant: item)) {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name)
                                     .font(.title)
                             }
                             Spacer()
-                            Image(systemName: "right")
-                                .font(.title)
+                            // Image(systemName: "arrow.right").font(.title) arrow automatically added for list
                         }
                     }
                 }
