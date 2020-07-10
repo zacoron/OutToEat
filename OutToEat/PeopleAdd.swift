@@ -17,27 +17,32 @@ struct PeopleAdd: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                TextField("Name", text: $name)
-                TextField("Notes (optional)", text: $notes)
-                TextField("Favorite (optional)", text: $favorite)
-            }
-            .navigationBarTitle("Add New Person")
-            .navigationBarItems(
-                leading:
-                    Button("Close") {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }.font(.title),
-                trailing:
-                    Button("Save") { // TODO: add warning when trying to save restaurant w/o name
-                        if !self.name.isEmpty
-                        {
-                            let item = Person(name: self.name, notes: self.notes)
-                            self.people.items.append(item)
+            VStack {
+                Form {
+                    TextField("Name", text: $name)
+                    TextField("Notes (optional)", text: $notes)
+                }
+                .navigationBarTitle("Add New Person")
+                .navigationBarItems(
+                    leading:
+                        Button("Close") {
                             self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }.font(.title)
-            ) // end navigationBarItems
+                        }.font(.title),
+                    trailing:
+                        Button("Save") { // TODO: add warning when trying to save restaurant w/o name
+                            if !self.name.isEmpty
+                            {
+                                let item = Person(name: self.name, notes: self.notes)
+                                self.people.items.append(item)
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }.font(.title)
+                ) // end navigationBarItems
+                .padding(.bottom, 20)
+            
+                Text("Restaurants can be added by selecting this person in the \"People\" tab")
+                    .padding(50)
+            } // end VStack
         } // end NavigationView
     } // end body
 }

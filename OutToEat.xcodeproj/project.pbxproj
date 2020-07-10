@@ -23,6 +23,8 @@
 		1404B21324B8169A00AB87E9 /* PeopleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21224B8169A00AB87E9 /* PeopleInfo.swift */; };
 		1404B21524B8173700AB87E9 /* PeopleAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21424B8173700AB87E9 /* PeopleAdd.swift */; };
 		1404B21724B81F8500AB87E9 /* PeopleEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21624B81F8500AB87E9 /* PeopleEdit.swift */; };
+		1404B21924B831D800AB87E9 /* AddFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21824B831D800AB87E9 /* AddFavorite.swift */; };
+		1404B21B24B8401600AB87E9 /* EditFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21A24B8401600AB87E9 /* EditFavorite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		1404B21224B8169A00AB87E9 /* PeopleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleInfo.swift; sourceTree = "<group>"; };
 		1404B21424B8173700AB87E9 /* PeopleAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleAdd.swift; sourceTree = "<group>"; };
 		1404B21624B81F8500AB87E9 /* PeopleEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEdit.swift; sourceTree = "<group>"; };
+		1404B21824B831D800AB87E9 /* AddFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavorite.swift; sourceTree = "<group>"; };
+		1404B21A24B8401600AB87E9 /* EditFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFavorite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 				1404B21424B8173700AB87E9 /* PeopleAdd.swift */,
 				1404B21624B81F8500AB87E9 /* PeopleEdit.swift */,
 				1404B21024B4733B00AB87E9 /* OtherView.swift */,
+				1404B21824B831D800AB87E9 /* AddFavorite.swift */,
+				1404B21A24B8401600AB87E9 /* EditFavorite.swift */,
 			);
 			path = OutToEat;
 			sourceTree = "<group>";
@@ -177,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1404B21524B8173700AB87E9 /* PeopleAdd.swift in Sources */,
+				1404B21924B831D800AB87E9 /* AddFavorite.swift in Sources */,
 				1404B21324B8169A00AB87E9 /* PeopleInfo.swift in Sources */,
 				1404B21724B81F8500AB87E9 /* PeopleEdit.swift in Sources */,
 				1404B1E924B3DF9E00AB87E9 /* AppDelegate.swift in Sources */,
@@ -189,6 +196,7 @@
 				1404B20924B44E4900AB87E9 /* RestaurantInfo.swift in Sources */,
 				1404B20524B4149F00AB87E9 /* RestaurantAdd.swift in Sources */,
 				1404B21124B4733B00AB87E9 /* OtherView.swift in Sources */,
+				1404B21B24B8401600AB87E9 /* EditFavorite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

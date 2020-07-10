@@ -8,11 +8,22 @@
 
 import SwiftUI
 
+struct Favorite: Identifiable, Codable, Equatable {
+    let id = UUID()
+    var personName: String
+    var personUUID: UUID
+    var restaurantName: String
+    var restaurantUUID: UUID
+    var order: String
+    var cost: Double
+    var notes: String
+}
+
 struct Person: Identifiable, Codable, Equatable {
     let id = UUID()
     var name: String
     var notes: String
-    var favorites = [String]() // TODO: change favorite to array of restaurants (or restaurant UUID's)
+    var favorites = [Favorite]() // TODO: change favorite to array of restaurants (or restaurant UUID's)
     
     // define methods to update elements of the struct
     public mutating func updateName(newName: String) {
@@ -23,7 +34,7 @@ struct Person: Identifiable, Codable, Equatable {
         self.notes = newNotes
     }
     
-    public mutating func addFavorite(newFavorite: String) {
+    public mutating func addFavorite(newFavorite: Favorite) {
         favorites.append(newFavorite)
     }
 }
@@ -61,7 +72,7 @@ class People: ObservableObject {
         items[index].updateNotes(newNotes: newNotes)
     }
     
-    public func addFavorite(newFavorite: String, index: Int) {
+    public func addFavorite(newFavorite: Favorite, index: Int) {
         items[index].addFavorite(newFavorite: newFavorite)
     }
 }

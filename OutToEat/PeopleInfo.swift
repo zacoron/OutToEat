@@ -32,20 +32,24 @@ struct PeopleInfo: View {
             Divider()
             
             VStack {
+                
                 HStack {
                     Text("Favorites:").font(.title)
                     Spacer()
-                    Button("Add Favorite") {
-                        self.people.addFavorite(newFavorite: String(self.person.favorites.count), index: self.people.items.firstIndex(of: self.person)!)
+                    NavigationLink(destination: AddFavorite()) {
+                        Text("Add Favorite")
+                        // self.people.addFavorite(newFavorite: newFavorite, index: self.people.items.firstIndex(of: self.person)!)
                     }
                 }.padding(.horizontal, 10)
                 
                 
                 List {
-                    ForEach(person.favorites, id: \.self) { item in
-                        Text(item)
+                    ForEach(person.favorites) { item in
+                        NavigationLink(destination: AddFavorite()) {
+                            Text(item.restaurantName).font(.title)
+                        }
                     }
-                .deleteDisabled(false)
+                    .deleteDisabled(false)
                 }
                 
             }
