@@ -11,12 +11,13 @@ import SwiftUI
 struct AddFavorite: View {
     @ObservedObject var restaurants: Restaurants
     
+    @State var restaurantChoices = [String]()
+    
     @State var selectedRestaurant = ""
     
     var body: some View {
         // Text(restaurants.items[0].name)
-        
-        
+    
         Form {
             Picker(selection: $selectedRestaurant, label: Text("Restaurant")) {
                 ForEach(restaurants.items) { item in

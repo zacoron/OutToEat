@@ -65,6 +65,10 @@ class Restaurants: ObservableObject {
     public func setNotes(newNotes: String, index: Int) {
         items[index].updateNotes(newNotes: newNotes)
     }
+    
+    public func removeAtIndex(index: Int) {
+        items.remove(at: index)
+    }
 }
 
 struct Favorite: Identifiable, Codable, Equatable {
