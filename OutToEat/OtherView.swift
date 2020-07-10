@@ -10,7 +10,24 @@ import SwiftUI
 
 struct OtherView: View {
     var body: some View {
-        Text("This page will have other stuff to do. Idk what yet")
+        VStack {
+            Text("Out To Eat")
+                .font(.largeTitle)
+                .padding(.vertical, 150)
+            
+            Text("Brought to you by:")
+                .font(.title)
+                .padding(.vertical, 15)
+            
+            Text("Zack Smalley")
+                .font(.title)
+                .foregroundColor(Color.blue)
+            
+            Text("(my name isn't a button but the blue looks nice")
+                .font(.subheadline)
+            
+            Spacer()
+        }
     }
 }
 

@@ -45,6 +45,7 @@ struct PeopleInfo: View {
                     ForEach(person.favorites, id: \.self) { item in
                         Text(item)
                     }
+                .deleteDisabled(false)
                 }
                 
             }

@@ -91,8 +91,8 @@
 				1404B20E24B471F500AB87E9 /* PeopleScroll.swift */,
 				1404B21224B8169A00AB87E9 /* PeopleInfo.swift */,
 				1404B21424B8173700AB87E9 /* PeopleAdd.swift */,
-				1404B21024B4733B00AB87E9 /* OtherView.swift */,
 				1404B21624B81F8500AB87E9 /* PeopleEdit.swift */,
+				1404B21024B4733B00AB87E9 /* OtherView.swift */,
 			);
 			path = OutToEat;
 			sourceTree = "<group>";
