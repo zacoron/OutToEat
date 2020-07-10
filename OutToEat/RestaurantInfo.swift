@@ -51,7 +51,7 @@ struct RestaurantInfo: View {
             }
             .navigationBarTitle("Info")
             .navigationBarItems(trailing:
-                NavigationLink(destination: RestaurantEdit(restaurant: restaurant)) {
+                NavigationLink(destination: RestaurantEdit(restaurants: restaurants, restaurant: restaurant)) {
                     Text("Edit")
                         .font(.largeTitle)
                     /*

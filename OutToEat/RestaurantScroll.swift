@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Restaurant: Identifiable, Codable {
+struct Restaurant: Identifiable, Codable, Equatable {
     let id = UUID()
     var name: String
     var type: String

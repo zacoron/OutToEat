@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct RestaurantEdit: View {
+    @ObservedObject var restaurants: Restaurants
     var restaurant: Restaurant
+    // var index: Int
     
     @State var name = ""
     @State var type = ""
@@ -76,6 +78,7 @@ struct RestaurantEdit: View {
                     Button("Save") {
                         if !self.name.isEmpty
                         {
+                            self.restaurants.setName(newName: self.name, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
                             // restaurant = Restaurant(name: name, type: type, notes: notes)
                             // restaurant.updateName(newName: "hi")
                             // self.restaurant.updateName(newName: self.name)
@@ -92,7 +95,7 @@ struct RestaurantEdit: View {
 
 struct RestaurantEdit_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantEdit(restaurant: Restaurant(name: "", type: "", notes: ""))
+        RestaurantEdit(restaurants: Restaurants(), restaurant: Restaurant(name: "", type: "", notes: ""))
     }
 }
 
