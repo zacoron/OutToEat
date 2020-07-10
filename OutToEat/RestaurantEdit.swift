@@ -8,10 +8,10 @@
 
 import SwiftUI
 
+// TODO: addMode instead of presentationMode???
 struct RestaurantEdit: View {
     @ObservedObject var restaurants: Restaurants
     var restaurant: Restaurant
-    // var index: Int
     
     @State var name = ""
     @State var type = ""
@@ -19,77 +19,59 @@ struct RestaurantEdit: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    /*
-    init() {
-        self.name = restaurant.name
-        self.type = restaurant.type
-        self.notes = restaurant.notes
-    }
- */
-    
     var body: some View {
-        // NavigationView {
-            VStack {
-                Divider()
-                    .padding(.vertical, 20)
-                
-                HStack {
-                    Text("Name:")
-                        .font(.title)
-                    Spacer()
-                    Text(restaurant.name)
-                        .font(.title)
-                }
-                
-                Divider()
-                
-                HStack {
-                    Text("Type:")
-                        .font(.title)
-                    Spacer()
-                    Text(restaurant.type)
-                        .font(.title)
-                }
-                
-                Divider()
-                
-                HStack {
-                    Text("Notes:")
-                        .font(.title)
-                    Spacer()
-                    Text(restaurant.notes)
-                        .font(.title)
-                }
-                
-                Form {
-                    TextField("Name", text: $name)
-                    
-                    TextField("Type (optional)", text: $type)
-                    
-                    TextField("Notes (optional)", text: $notes)
-                    
-                }
-                
-                Spacer()
-            }
-            .navigationBarTitle("Editing: \(restaurant.name)" )
-            .navigationBarItems(
-                trailing:
-                    Button("Save") {
-                        if !self.name.isEmpty
-                        {
-                            self.restaurants.setName(newName: self.name, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
-                            // restaurant = Restaurant(name: name, type: type, notes: notes)
-                            // restaurant.updateName(newName: "hi")
-                            // self.restaurant.updateName(newName: self.name)
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }.font(.largeTitle))
+        VStack {
+            Divider().padding(.vertical, 20)
             
-        // }
-    }
-    
-    
+            HStack {
+                Text("Name:").font(.title)
+                Spacer()
+                Text(restaurant.name).font(.title)
+            }.padding(.horizontal, 10)
+            
+            Divider()
+            
+            HStack {
+                Text("Type:").font(.title)
+                Spacer()
+                Text(restaurant.type).font(.title)
+            }.padding(.horizontal, 10)
+            
+            Divider()
+            
+            HStack {
+                Text("Notes:").font(.title)
+                Spacer()
+                Text(restaurant.notes).font(.title)
+            }.padding(.horizontal, 10)
+            
+            Form {
+                TextField("Name", text: $name)
+                TextField("Type (optional)", text: $type)
+                TextField("Notes (optional)", text: $notes)
+            }
+            
+            Spacer()
+        } // end VStack
+        .navigationBarTitle("Editing: \(restaurant.name)")
+        .navigationBarItems(
+            trailing:
+                Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
+                    // check each box for empty values to determine whether to update or not
+                    if !self.name.isEmpty {
+                        self.restaurants.setName(newName: self.name, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                    }
+                    if !self.type.isEmpty {
+                        self.restaurants.setType(newType: self.type, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                    }
+                    if !self.notes.isEmpty {
+                        self.restaurants.setNotes(newNotes: self.notes, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                    }
+                    
+                    self.presentationMode.wrappedValue.dismiss()
+                }.font(.title)
+        ) // end navigationBarItems
+    } // end body
 }
 
 

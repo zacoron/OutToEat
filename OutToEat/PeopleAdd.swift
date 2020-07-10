@@ -1,28 +1,28 @@
 //
-//  RestaurantAdd.swift
+//  PeopleAdd.swift
 //  OutToEat
 //
-//  Created by Zack Smalley on 7/6/20
+//  Created by Zack Smalley on 7/9/20.
 //  Copyright © 2020 Zack Smalley. All rights reserved.
 //
 
 import SwiftUI
 
-struct RestaurantAdd: View {
+struct PeopleAdd: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var restaurants: Restaurants
+    @ObservedObject var people: People
     @State private var name = ""
-    @State private var type = ""
     @State private var notes = ""
+    @State private var favorite = ""
     
     var body: some View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
-                TextField("Type (optional)", text: $type)
                 TextField("Notes (optional)", text: $notes)
+                TextField("Favorite (optional)", text: $favorite)
             }
-            .navigationBarTitle("Add New Restaurant")
+            .navigationBarTitle("Add New Person")
             .navigationBarItems(
                 leading:
                     Button("Close") {
@@ -32,8 +32,8 @@ struct RestaurantAdd: View {
                     Button("Save") { // TODO: add warning when trying to save restaurant w/o name
                         if !self.name.isEmpty
                         {
-                            let item = Restaurant(name: self.name, type: self.type, notes: self.notes)
-                            self.restaurants.items.append(item)
+                            let item = Person(name: self.name, notes: self.notes)
+                            self.people.items.append(item)
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }.font(.title)
@@ -42,8 +42,8 @@ struct RestaurantAdd: View {
     } // end body
 }
 
-struct RestaurantAdd_Previews: PreviewProvider {
+struct PeopleAdd_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantAdd(restaurants: Restaurants())
+        PeopleAdd(people: People())
     }
 }
