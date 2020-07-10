@@ -11,6 +11,7 @@ import SwiftUI
 struct PeopleInfo: View {
     @ObservedObject var people: People
     var person: Person
+    @ObservedObject var restaurants: Restaurants
     
     var body: some View {
         VStack { // TODO: might be able to add horizontal padding to VStack instead of each HStack
@@ -36,7 +37,7 @@ struct PeopleInfo: View {
                 HStack {
                     Text("Favorites:").font(.title)
                     Spacer()
-                    NavigationLink(destination: AddFavorite()) {
+                    NavigationLink(destination: AddFavorite(restaurants: restaurants)) {
                         Text("Add Favorite")
                         // self.people.addFavorite(newFavorite: newFavorite, index: self.people.items.firstIndex(of: self.person)!)
                     }
@@ -45,7 +46,7 @@ struct PeopleInfo: View {
                 
                 List {
                     ForEach(person.favorites) { item in
-                        NavigationLink(destination: AddFavorite()) {
+                        NavigationLink(destination: AddFavorite(restaurants: self.restaurants)) {
                             Text(item.restaurantName).font(.title)
                         }
                     }
@@ -69,6 +70,6 @@ struct PeopleInfo: View {
 
 struct PeopleInfo_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleInfo(people: People(), person: Person(name: "", notes: ""))
+        PeopleInfo(people: People(), person: Person(name: "", notes: ""), restaurants: Restaurants())
     }
 }

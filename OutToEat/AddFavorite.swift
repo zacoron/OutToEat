@@ -9,24 +9,31 @@
 import SwiftUI
 
 struct AddFavorite: View {
-    // let restaurants = RestaurantScroll.init(restaurants: items)
+    @ObservedObject var restaurants: Restaurants
     
-    @State var selectedRestaurant = ""    
+    @State var selectedRestaurant = ""
     
     var body: some View {
-        Text("Add Favorite")
-        /*
-        Form {
-            TextField("Select a Restaurant", text: $selectedRestaurant)
-        }
-        */
+        // Text(restaurants.items[0].name)
         
+        
+        Form {
+            Picker(selection: $selectedRestaurant, label: Text("Restaurant")) {
+                ForEach(restaurants.items) { item in
+                    
+                    Text(String(self.restaurants.items.count))
+                }
+            }
+        }
+ 
+        
+                
         // let newFavorite = Favorite(personName: "", personUUID: person.id, restaurantName: "3", restaurantUUID: "4", order: "4", cost: 5.55, notes: "6")
     }
 }
 
 struct AddFavorite_Previews: PreviewProvider {
     static var previews: some View {
-        AddFavorite()
+        AddFavorite(restaurants: Restaurants())
     }
 }
