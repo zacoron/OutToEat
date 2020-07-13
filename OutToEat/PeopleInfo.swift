@@ -11,7 +11,8 @@ import SwiftUI
 struct PeopleInfo: View {
     @ObservedObject var people: People
     var person: Person
-    @ObservedObject var restaurants: Restaurants
+    @EnvironmentObject var restaurants: Restaurants
+    @State private var showingAddFavorite = false
     
     var body: some View {
         VStack { // TODO: might be able to add horizontal padding to VStack instead of each HStack
@@ -37,17 +38,19 @@ struct PeopleInfo: View {
                 HStack {
                     Text("Favorites:").font(.title)
                     Spacer()
-                    NavigationLink(destination: AddFavorite(restaurants: restaurants)) {
-                        Text("Add Favorite")
-                        // self.people.addFavorite(newFavorite: newFavorite, index: self.people.items.firstIndex(of: self.person)!)
+                    NavigationLink(destination: AddFavorite(person: self.person)) {
+                        Button(action: {
+                            self.showingAddFavorite = true
+                        }) {
+                            Text("Add Favorite")
+                        }
                     }
                 }.padding(.horizontal, 10)
                 
-                
                 List {
                     ForEach(person.favorites) { item in
-                        NavigationLink(destination: AddFavorite(restaurants: self.restaurants)) {
-                            Text(item.restaurantName).font(.title)
+                        NavigationLink(destination: EditFavorite(favorite: item)) {
+                            Text(self.person.favorites[self.person.favorites.firstIndex(of: item)!].restaurantName)
                         }
                     }
                     .deleteDisabled(false)
@@ -63,13 +66,18 @@ struct PeopleInfo: View {
             NavigationLink(destination: PeopleEdit(people: people, person: person)) {
                 Text("Edit").font(.title)
             }
-        ) // end navigationBarItems
+        )
+        .sheet(isPresented: $showingAddFavorite) {
+            AddFavorite(person: self.person)
+                .environmentObject(self.restaurants)
+                .environmentObject(self.people)
+        } // end navigationBarItems
          
     }
 }
 
 struct PeopleInfo_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleInfo(people: People(), person: Person(name: "", notes: ""), restaurants: Restaurants())
+        PeopleInfo(people: People(), person: Person(name: "", notes: ""))
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RestaurantInfo: View {
-    @ObservedObject var restaurants: Restaurants
+    @EnvironmentObject var restaurants: Restaurants
     var restaurant: Restaurant
     
     var body: some View {
@@ -50,6 +50,6 @@ struct RestaurantInfo: View {
 struct RestaurantInfo_Previews: PreviewProvider {
     // @ObservedObject var restaurants: Restaurants
     static var previews: some View {
-        RestaurantInfo(restaurants: Restaurants(), restaurant: Restaurant(name: "", type: "", notes: ""))
+        RestaurantInfo(restaurant: Restaurant(name: "", type: "", notes: ""))
     }
 }

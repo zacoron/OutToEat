@@ -17,7 +17,7 @@ struct RestaurantScroll: View {
         NavigationView {
             List {
                 ForEach(restaurants.items) { item in // items are identifiable (by UUID) so no need to specify id
-                    NavigationLink(destination: RestaurantInfo(restaurants: self.restaurants, restaurant: item)) {
+                    NavigationLink(destination: RestaurantInfo(restaurant: item)) {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name).font(.title)
@@ -29,7 +29,7 @@ struct RestaurantScroll: View {
                 .deleteDisabled(true)
                 // .onDelete(perform: removeItems)
             } // end List
-                .navigationBarTitle("Restaurants - R\(restaurants.items.count) P\(people.items.count)")
+                .navigationBarTitle("Restaurants - \(restaurants.items.count)")
             .navigationBarItems(
                 trailing:
                     Button(action: {
