@@ -8,6 +8,44 @@
 
 import SwiftUI
 
+extension View {
+
+    /// Navigate to a new view.
+    /// - Parameters:
+    ///   - view: View to navigate to.
+    ///   - binding: Only navigates when this condition is `true`.
+    func navigate<SomeView: View>(to view: SomeView, when binding: Binding<Bool>) -> some View {
+        modifier(NavigateModifier(destination: view, binding: binding))
+    }
+}
+
+
+// MARK: - NavigateModifier
+fileprivate struct NavigateModifier<SomeView: View>: ViewModifier {
+
+    // MARK: Private properties
+    fileprivate let destination: SomeView
+    @Binding fileprivate var binding: Bool
+
+
+    // MARK: - View body
+    fileprivate func body(content: Content) -> some View {
+        NavigationView {
+            ZStack {
+                content
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                NavigationLink(destination: destination
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true),
+                               isActive: $binding) {
+                    EmptyView()
+                }
+            }
+        }
+    }
+}
+
 // TODO: addMode instead of presentationMode???
 struct RestaurantEdit: View {
     @ObservedObject var restaurants: Restaurants
@@ -18,7 +56,7 @@ struct RestaurantEdit: View {
     @State var notes = ""
     
     @Environment(\.presentationMode) var presentationMode
-    @State var showScroll = false // keep track of wheter we want to jump to the restaurant scroll view
+    @State var showScroll = false // keep track of whether we want to jump to the restaurant scroll view
     
     var body: some View {
         VStack {
@@ -63,18 +101,21 @@ struct RestaurantEdit: View {
             }
             .padding(.bottom, 50)
             .font(.title)
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            // .navigate(to: RestaurantScroll(), when: $showScroll)
+            // .navigationBarHidden(true)
+            // .navigationBarBackButtonHidden(true)
+            
             
             NavigationLink(destination: RestaurantScroll(), isActive: $showScroll) {
                 EmptyView()
             }
+            
         } // end VStack
         .navigationBarTitle("Editing: \(restaurant.name)")
         .navigationBarItems(
             trailing:
                 Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
-                    // check each box for empty values to determine whether to update or not
+                    // this checks each box for empty values to determine whether to update or not
                     if !self.name.isEmpty {
                         self.restaurants.setName(newName: self.name, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
                     }

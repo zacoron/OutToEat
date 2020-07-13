@@ -27,6 +27,10 @@ struct OtherView: View {
                 .font(.subheadline)
             
             Spacer()
+            
+            Text("version 1.0")
+                .foregroundColor(Color.gray)
+                .padding()
         }
     }
 }

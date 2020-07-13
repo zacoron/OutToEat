@@ -33,8 +33,10 @@ struct RestaurantAdd: View {
                         if !self.name.isEmpty
                         {
                             let item = Restaurant(name: self.name, type: self.type, notes: self.notes)
+                            
                             self.restaurants.items.append(item)
                             self.presentationMode.wrappedValue.dismiss()
+                            self.restaurants.objectWillChange.send()
                         }
                     }.font(.title)
             ) // end navigationBarItems

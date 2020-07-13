@@ -31,6 +31,14 @@ struct AddFavorite: View {
                 
         // let newFavorite = Favorite(personName: "", personUUID: person.id, restaurantName: "3", restaurantUUID: "4", order: "4", cost: 5.55, notes: "6")
     }
+    
+    /*
+    func getRestaurants(restaurants: Restaurants) {
+        for(restaurants, id: \.self) { item in
+            restaurantChoices.append($0)
+        }
+    }
+    */
 }
 
 struct AddFavorite_Previews: PreviewProvider {
