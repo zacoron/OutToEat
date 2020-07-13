@@ -36,7 +36,6 @@ struct RestaurantAdd: View {
                             
                             self.restaurants.items.append(item)
                             self.presentationMode.wrappedValue.dismiss()
-                            self.restaurants.objectWillChange.send()
                         }
                     }.font(.title)
             ) // end navigationBarItems

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RestaurantScroll: View {
     @EnvironmentObject var restaurants: Restaurants // refers to restaurants in environment so changes are automatically propagated
+    @EnvironmentObject var people: People
     @State private var showingRestaurantAdd = false
     
     var body: some View {
@@ -28,7 +29,7 @@ struct RestaurantScroll: View {
                 .deleteDisabled(true)
                 // .onDelete(perform: removeItems)
             } // end List
-                .navigationBarTitle("Restaurants - \(restaurants.items.count)")
+                .navigationBarTitle("Restaurants - R\(restaurants.items.count) P\(people.items.count)")
             .navigationBarItems(
                 trailing:
                     Button(action: {

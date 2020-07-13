@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PeopleScroll: View {
-    @ObservedObject var people = People()
+    @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
     @State private var showingPeopleAdd = false
     

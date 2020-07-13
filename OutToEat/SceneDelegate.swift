@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var restaurants = Restaurants() // define restaurants in the (global) environment
+    var people = People() // define people in the (global) environment
     
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -26,7 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(restaurants)) // add the environment objects to the contentView
+            window.rootViewController = UIHostingController(rootView: contentView
+                .environmentObject(restaurants) // add the restaurants environment object to the contentView
+                .environmentObject(people)) // add the people environment object to the contentView
             self.window = window
             window.makeKeyAndVisible()
         }

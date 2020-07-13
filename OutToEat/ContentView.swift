@@ -108,8 +108,12 @@ struct Person: Identifiable, Codable, Equatable {
 }
 
 class People: ObservableObject {
+    var didChange = PassthroughSubject<Void, Never>() // needed to notify environment variable of changes
+    
     @Published var items = [Person]() {
         didSet {
+            didChange.send() // notify environment variable of change
+            
             let encoder = JSONEncoder()
             
             if let encoded = try? encoder.encode(items) {
@@ -146,7 +150,9 @@ class People: ObservableObject {
 }
 
 struct ContentView: View {
-    @EnvironmentObject var restaurants: Restaurants // don't think i need to instantiate the environment object here but it doesn't hurt
+    // don't think i need to instantiate the environment objects here but it doesn't hurt
+    @EnvironmentObject var restaurants: Restaurants
+    @EnvironmentObject var people: People
     
     var body: some View {
         VStack() {
