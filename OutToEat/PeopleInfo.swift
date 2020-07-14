@@ -65,7 +65,6 @@ struct PeopleInfo: View {
                 .environmentObject(self.restaurants)
                 .environmentObject(self.people)
         } // end navigationBarItems
-         
     }
 }
 

@@ -8,12 +8,13 @@
 
 import SwiftUI
 
+// TODO: fix orders not automatically showing up in infofavorite list of orders
 struct OrderAdd: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
-    var favorite: Favorite
-    var person: Person
+    @State var favorite: Favorite
+    @State var person: Person
     
     @State private var orderDetails = ""
     @State private var orderNotes = ""

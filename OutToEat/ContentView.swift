@@ -100,7 +100,7 @@ struct Person: Identifiable, Codable, Equatable {
     let id = UUID()
     var name: String
     var notes: String
-    var favorites = [Favorite]() // TODO: change favorite to array of restaurants (or restaurant UUID's)
+    var favorites = [Favorite]()
     
     // define methods to update elements of the struct
     public mutating func updateName(newName: String) {

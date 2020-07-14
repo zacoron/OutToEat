@@ -24,7 +24,7 @@ struct InfoFavorite: View {
                 Text("Notes:").font(.title)
                 Spacer()
                 Text(favorite.notes).font(.title)
-            }// .padding(.horizontal, 10)
+            }.padding(.horizontal, 10)
             
             Divider()
             
@@ -39,21 +39,24 @@ struct InfoFavorite: View {
                             Text("Add Order")
                         }
                     }
-                }// .padding(.horizontal, 10)
+                }.padding(.horizontal, 10)
                 
                 List {
                     ForEach(favorite.orders) { item in
-                        Text("Order \(item.orderDetails)")
+                        NavigationLink(destination: OrderInfo()) {
+                            Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
+                        }
+                        //Text("\(item.orderDetails)")
                     }
                     .deleteDisabled(false)
                 }
-                
             }
             
             Spacer()
         }
         .navigationBarTitle("\(person.name) - \(favorite.restaurantName)").padding()
         .navigationBarItems(trailing:
+            // TODO: add edit menu for favorites
             // NavigationLink(destination: PeopleEdit(people: people, person: person)) {
                 Text("Edit").font(.title)
             // }
@@ -63,9 +66,7 @@ struct InfoFavorite: View {
                 .environmentObject(self.restaurants)
                 .environmentObject(self.people)
         }  // end navigationBarItems
-         
     }
-    
 }
 
 struct InfoFavorite_Previews: PreviewProvider {
