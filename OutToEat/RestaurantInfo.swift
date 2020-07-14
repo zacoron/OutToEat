@@ -49,15 +49,16 @@ struct RestaurantInfo: View {
                 List {
                     ForEach(people.items) { person in
                         Group { // bug in swiftui that requires grouping https://developer.apple.com/forums/thread/130783
-                            // Text(self.people.items[0].name)
                             ForEach(self.people.items[self.people.items.firstIndex(of: person)!].favorites) { favorite in
-                                // Text("hi")
                                 HStack {
                                     // let personIndex = self.people.items.firstIndex(of: person)
                                     // let favoriteIndex = self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)
                                     
                                     if(self.people.items[self.people.items.firstIndex(of: person)!].favorites[self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)!].restaurantName == self.restaurant.name) {
-                                        Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
+                                        NavigationLink(destination: InfoFavorite(favorite: favorite, person: person)) {
+                                            Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
+                                        }
+                                            // Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
                                     }
                                     
                                 }
