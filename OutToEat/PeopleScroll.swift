@@ -17,7 +17,7 @@ struct PeopleScroll: View {
         NavigationView {
             List {
                 ForEach(people.items) { item in // items are identifiable (by UUID) so no need to specify id
-                    NavigationLink(destination: PeopleInfo(people: self.people, person: item)) {
+                    NavigationLink(destination: PeopleInfo(people: self._people, person: item)) {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name).font(.title)

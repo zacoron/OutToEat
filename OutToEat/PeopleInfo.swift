@@ -9,19 +9,13 @@
 import SwiftUI
 
 struct PeopleInfo: View {
-    @ObservedObject var people: People
+    @EnvironmentObject var people: People
     var person: Person
     @EnvironmentObject var restaurants: Restaurants
     @State private var showingAddFavorite = false
     
     var body: some View {
         VStack { // TODO: might be able to add horizontal padding to VStack instead of each HStack
-            
-            HStack {
-                Text("Name:").font(.title)
-                Spacer()
-                Text(person.name).font(.title)
-            }.padding(.horizontal, 10)
             
             Divider()
             
@@ -34,7 +28,6 @@ struct PeopleInfo: View {
             Divider()
             
             VStack {
-                
                 HStack {
                     Text("Favorites:").font(.title)
                     Spacer()
@@ -49,7 +42,7 @@ struct PeopleInfo: View {
                 
                 List {
                     ForEach(person.favorites) { item in
-                        NavigationLink(destination: EditFavorite(favorite: item)) {
+                        NavigationLink(destination: InfoFavorite(favorite: item, person: self.person)) {
                             Text(self.person.favorites[self.person.favorites.firstIndex(of: item)!].restaurantName)
                         }
                     }
@@ -61,7 +54,7 @@ struct PeopleInfo: View {
             Spacer()
             
         } // end VStack
-        .navigationBarTitle("Info")
+        .navigationBarTitle(self.person.name)
         .navigationBarItems(trailing:
             NavigationLink(destination: PeopleEdit(people: people, person: person)) {
                 Text("Edit").font(.title)
@@ -78,6 +71,6 @@ struct PeopleInfo: View {
 
 struct PeopleInfo_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleInfo(people: People(), person: Person(name: "", notes: ""))
+        PeopleInfo(person: Person(name: "", notes: ""))
     }
 }

@@ -60,12 +60,12 @@ struct RestaurantEdit: View {
     
     var body: some View {
         VStack {
-            Divider().padding(.vertical, 20)
+            Divider().padding(.top, 10)
             
             HStack {
                 Text("Name:").font(.title)
                 Spacer()
-                Text(restaurant.name).font(.title)
+                TextField(restaurant.name, text: $name).font(.title)
             }.padding(.horizontal, 10)
             
             Divider()
@@ -73,7 +73,7 @@ struct RestaurantEdit: View {
             HStack {
                 Text("Type:").font(.title)
                 Spacer()
-                Text(restaurant.type).font(.title)
+                TextField(restaurant.type, text: $type).font(.title)
             }.padding(.horizontal, 10)
             
             Divider()
@@ -81,14 +81,8 @@ struct RestaurantEdit: View {
             HStack {
                 Text("Notes:").font(.title)
                 Spacer()
-                Text(restaurant.notes).font(.title)
+                TextField(restaurant.notes, text: $notes).font(.title)
             }.padding(.horizontal, 10)
-            
-            Form {
-                TextField("Name", text: $name)
-                TextField("Type (optional)", text: $type)
-                TextField("Notes (optional)", text: $notes)
-            }
             
             Spacer()
             
@@ -122,6 +116,7 @@ struct RestaurantEdit: View {
                     if !self.type.isEmpty {
                         self.restaurants.setType(newType: self.type, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
                     }
+                    // TODO: 121 throws error if finds nil (when editing type and notes at same time on restaurant entry that has not been edited before). dont know why
                     if !self.notes.isEmpty {
                         self.restaurants.setNotes(newNotes: self.notes, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
                     }

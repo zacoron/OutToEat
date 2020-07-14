@@ -9,19 +9,13 @@
 import SwiftUI
 
 struct EditFavorite: View {
-    @EnvironmentObject var people: People
-    var favorite: Favorite
-    
     var body: some View {
-        VStack {
-            Text("Restaurant Name: \(favorite.restaurantName)").padding()
-            Text("Order: \(favorite.order)").padding()
-        }
+        Text("Edit Favorite")
     }
 }
 
 struct EditFavorite_Previews: PreviewProvider {
     static var previews: some View {
-        EditFavorite(favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), order: "", cost: 5.55, notes: ""))
+        EditFavorite()
     }
 }

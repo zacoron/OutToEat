@@ -29,7 +29,7 @@ struct AddFavorite: View {
                     }
                 } // end restaurant name Picker
                 TextField("Order", text: $order)
-                TextField("Cost", text: $cost)
+                TextField("Cost", text: $cost).keyboardType(.decimalPad)
                 TextField("Notes", text: $notes)
             }
             .navigationBarTitle("Add New Restaurant")
@@ -47,7 +47,7 @@ struct AddFavorite: View {
                                 personUUID: self.person.id,
                                 restaurantName: self.selectedRestaurant,
                                 restaurantUUID: self.restaurants.items[self.searchRestaurantsForName(name: self.selectedRestaurant)!].id,
-                                order: self.order,
+                                orders: [Order(orderDetails: "", orderNotes: "", orderCost: 5.55)],
                                 cost: 5.55,
                                 notes: self.notes
                             )
@@ -60,6 +60,7 @@ struct AddFavorite: View {
         } // end NavigationView
     } // end body
     
+    // TODO: search restaurants by UUID instead of name (in case of duplicate named restaurants)
     func searchRestaurantsForName(name: String) -> Int? {
         return restaurants.items.firstIndex { $0.name == self.selectedRestaurant }
     }
@@ -68,33 +69,6 @@ struct AddFavorite: View {
         return people.items.firstIndex { $0.id == self.person.id }
     }
     
-    /*
-    @EnvironmentObject var restaurants: Restaurants
-    
-    @State private var selectedRestaurant = ""
-    @State private var orderDetails = ""
-    
-    var body: some View {
-        // Text(restaurants.items[0].name)
-    
-        Form {
-            Section {
-                Picker(selection: $selectedRestaurant, label: Text("Restaurant")) {
-                    ForEach(restaurants.items) { item in
-                        Text(self.restaurants.items[self.restaurants.items.firstIndex(of: item)!].name)
-                            .tag(self.restaurants.items[self.restaurants.items.firstIndex(of: item)!].name)
-                    }
-                } // end restaurant name Picker
-                TextField("Order", text: $orderDetails)
-            } // end Section
-        }
-        .navigationBarTitle("Add Favorite")
- 
-        
-        
-        // let newFavorite = Favorite(personName: "", personUUID: person.id, restaurantName: "3", restaurantUUID: "4", order: "4", cost: 5.55, notes: "6")
-    }
-    */
 }
 
 struct AddFavorite_Previews: PreviewProvider {

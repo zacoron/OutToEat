@@ -25,6 +25,8 @@
 		1404B21724B81F8500AB87E9 /* PeopleEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21624B81F8500AB87E9 /* PeopleEdit.swift */; };
 		1404B21924B831D800AB87E9 /* AddFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21824B831D800AB87E9 /* AddFavorite.swift */; };
 		1404B21B24B8401600AB87E9 /* EditFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21A24B8401600AB87E9 /* EditFavorite.swift */; };
+		1404B21D24BD4C4800AB87E9 /* InfoFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21C24BD4C4800AB87E9 /* InfoFavorite.swift */; };
+		1404B21F24BD4DAC00AB87E9 /* OrderAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		1404B21624B81F8500AB87E9 /* PeopleEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEdit.swift; sourceTree = "<group>"; };
 		1404B21824B831D800AB87E9 /* AddFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavorite.swift; sourceTree = "<group>"; };
 		1404B21A24B8401600AB87E9 /* EditFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFavorite.swift; sourceTree = "<group>"; };
+		1404B21C24BD4C4800AB87E9 /* InfoFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFavorite.swift; sourceTree = "<group>"; };
+		1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +100,11 @@
 				1404B21224B8169A00AB87E9 /* PeopleInfo.swift */,
 				1404B21424B8173700AB87E9 /* PeopleAdd.swift */,
 				1404B21624B81F8500AB87E9 /* PeopleEdit.swift */,
-				1404B21024B4733B00AB87E9 /* OtherView.swift */,
 				1404B21824B831D800AB87E9 /* AddFavorite.swift */,
 				1404B21A24B8401600AB87E9 /* EditFavorite.swift */,
+				1404B21C24BD4C4800AB87E9 /* InfoFavorite.swift */,
+				1404B21024B4733B00AB87E9 /* OtherView.swift */,
+				1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */,
 			);
 			path = OutToEat;
 			sourceTree = "<group>";
@@ -191,12 +197,14 @@
 				1404B1EB24B3DF9E00AB87E9 /* SceneDelegate.swift in Sources */,
 				1404B1ED24B3DF9E00AB87E9 /* ContentView.swift in Sources */,
 				1404B20B24B45D1C00AB87E9 /* RestaurantEdit.swift in Sources */,
+				1404B21D24BD4C4800AB87E9 /* InfoFavorite.swift in Sources */,
 				1404B20D24B4715500AB87E9 /* AppView.swift in Sources */,
 				1404B1FF24B3F92C00AB87E9 /* RestaurantScroll.swift in Sources */,
 				1404B20924B44E4900AB87E9 /* RestaurantInfo.swift in Sources */,
 				1404B20524B4149F00AB87E9 /* RestaurantAdd.swift in Sources */,
 				1404B21124B4733B00AB87E9 /* OtherView.swift in Sources */,
 				1404B21B24B8401600AB87E9 /* EditFavorite.swift in Sources */,
+				1404B21F24BD4DAC00AB87E9 /* OrderAdd.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

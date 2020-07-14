@@ -9,11 +9,13 @@
 import Combine
 import SwiftUI
 
+// TODO: make not in FAQ that deleting a restaurant will not delete entries for that restuarant in the favorites of each person that previously had that restaurant as a favorite
 struct Restaurant: Identifiable, Codable, Equatable {
     let id = UUID()
     var name: String
     var type: String
     var notes: String
+    var peopleFavorited = [Person]()
     
     // define methods to update elements of the struct
     public mutating func updateName(newName: String) {
@@ -76,13 +78,20 @@ class Restaurants: ObservableObject {
     }
 }
 
+struct Order: Identifiable, Codable, Equatable {
+    let id = UUID()
+    var orderDetails: String
+    var orderNotes: String
+    var orderCost: Double
+}
+
 struct Favorite: Identifiable, Codable, Equatable {
     let id = UUID()
     var personName: String
     var personUUID: UUID
     var restaurantName: String
     var restaurantUUID: UUID
-    var order: String
+    var orders = [Order]()
     var cost: Double
     var notes: String
 }
@@ -142,6 +151,10 @@ class People: ObservableObject {
         
     public func setNotes(newNotes: String, index: Int) {
         items[index].updateNotes(newNotes: newNotes)
+    }
+    
+    public func removeAtIndex(index: Int) {
+        items.remove(at: index)
     }
     
     public func addFavorite(newFavorite: Favorite, index: Int) {
