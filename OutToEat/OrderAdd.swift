@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// TODO: fix orders not automatically showing up in infofavorite list of orders
+// TODO: fix orders not automatically showing up in infofavorite list of orders (seemingly only through the people tab - restaurants works fine)
 struct OrderAdd: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var people: People

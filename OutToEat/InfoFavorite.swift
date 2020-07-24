@@ -41,14 +41,15 @@ struct InfoFavorite: View {
                     }
                 }.padding(.horizontal, 10)
                 
+                // TODO: make sure orders added through the people -> favorites -> add order button appear automatically
                 List {
                     ForEach(favorite.orders) { item in
-                        /*
-                        NavigationLink(destination: OrderInfo()) {
+                        
+                        NavigationLink(destination: OrderInfo(order: item, index: (self.favorite.orders.firstIndex(of: item)!) + 1)) {
                             Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
                         }
-                        */
-                        Text("\(item.orderDetails) - Count: \(self.favorite.orders.count)")
+                        
+                        // Text("\(item.orderDetails) - Count: \(self.favorite.orders.count)")
                         
                     }
                     .deleteDisabled(false)
