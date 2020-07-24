@@ -46,7 +46,7 @@ fileprivate struct NavigateModifier<SomeView: View>: ViewModifier {
     }
 }
 
-// TODO: addMode instead of presentationMode???
+// addMode instead of presentationMode???
 struct RestaurantEdit: View {
     @ObservedObject var restaurants: Restaurants
     var restaurant: Restaurant
@@ -81,7 +81,9 @@ struct RestaurantEdit: View {
             HStack {
                 Text("Notes:").font(.title)
                 Spacer()
-                TextField(restaurant.notes, text: $notes).font(.title)
+                TextField(restaurant.notes, text: $notes)
+                    .font(.title)
+                    .textFieldStyle(PlainTextFieldStyle())
             }.padding(.horizontal, 10)
             
             Spacer()

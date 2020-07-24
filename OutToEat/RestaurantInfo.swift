@@ -14,7 +14,7 @@ struct RestaurantInfo: View {
     var restaurant: Restaurant
     
     var body: some View {
-        VStack { // TODO: might be able to add horizontal padding to VStack instead of each HStack
+        VStack { // might be able to add horizontal padding to VStack instead of each HStack
             HStack {
                 Text("Name:").font(.title)
                 Spacer()

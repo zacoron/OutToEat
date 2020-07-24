@@ -16,7 +16,7 @@ struct PeopleInfo: View {
     @State private var showingAddFavorite = false
     
     var body: some View {
-        VStack { // TODO: might be able to add horizontal padding to VStack instead of each HStack
+        VStack { // might be able to add horizontal padding to VStack instead of each HStack
             
             Divider()
             

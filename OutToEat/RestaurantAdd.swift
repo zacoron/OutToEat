@@ -11,9 +11,13 @@ import SwiftUI
 struct RestaurantAdd: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var restaurants: Restaurants
+    
     @State private var name = ""
     @State private var type = ""
     @State private var notes = ""
+    
+    @State private var showEmptyNameWarning = false
+    @State private var showDuplicateNameWarning = false
     
     var body: some View {
         NavigationView {
@@ -29,18 +33,45 @@ struct RestaurantAdd: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }.font(.title),
                 trailing:
-                    Button("Save") { // TODO: add warning when trying to save restaurant w/o name
+                    Button("Save") {
                         if !self.name.isEmpty
                         {
-                            let item = Restaurant(name: self.name, type: self.type, notes: self.notes)
+                            if(self.findDuplicate(restaurant: self.name) == false) { // determine if the restaurant name is already being used
+                                let item = Restaurant(name: self.name, type: self.type, notes: self.notes)
+                                
+                                self.restaurants.items.append(item)
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            else { // show a warning that restaurant name already exists
+                                self.showDuplicateNameWarning = true // attached to NavigationView
+                            }
                             
-                            self.restaurants.items.append(item)
-                            self.presentationMode.wrappedValue.dismiss()
                         }
-                    }.font(.title)
+                        else { // display warning that restaurant needs a name
+                            self.showEmptyNameWarning = true // attached to this button
+                        }
+                    }
+                    .font(.title)
+                    .alert(isPresented: $showEmptyNameWarning) {
+                        Alert(title: Text("Restaurant Must Have a Name"), dismissButton: .default(Text("Oh, right!")))
+                    }
+                    
             ) // end navigationBarItems
         } // end NavigationView
+        .alert(isPresented: $showDuplicateNameWarning) { // swiftui doesn't let you attach multiple alerts to same object so i have to stick the other alert somewhere else
+            Alert(title: Text("Restaurant With That Name Already Exists"), dismissButton: .default(Text("Oh, right!")))
+        }
     } // end body
+    
+    // return true if a restaurant of given name already exists
+    func findDuplicate(restaurant: String) -> Bool? {
+        for i in restaurants.items {
+            if(i.name == restaurant) {
+                return true // if a duplicate name is found
+            }
+        }
+        return false // if a duplicate name is not found
+    }
 }
 
 struct RestaurantAdd_Previews: PreviewProvider {

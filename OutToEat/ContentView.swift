@@ -9,7 +9,6 @@
 import Combine
 import SwiftUI
 
-// TODO: make not in FAQ that deleting a restaurant will not delete entries for that restuarant in the favorites of each person that previously had that restaurant as a favorite
 struct Restaurant: Identifiable, Codable, Equatable {
     let id = UUID()
     var name: String
@@ -31,7 +30,6 @@ struct Restaurant: Identifiable, Codable, Equatable {
     }
 }
 
-// TODO: implement manual delete
 class Restaurants: ObservableObject {
     var didChange = PassthroughSubject<Void, Never>() // needed to notify environment variable of changes
     

@@ -10,27 +10,33 @@ import SwiftUI
 
 struct OtherView: View {
     var body: some View {
-        VStack {
-            Text("Out To Eat")
-                .font(.largeTitle)
-                .padding(.vertical, 150)
-            
-            Text("Brought to you by:")
-                .font(.title)
-                .padding(.vertical, 15)
-            
-            Text("Zack Smalley")
-                .font(.title)
-                .foregroundColor(Color.blue)
-            
-            Text("(my name isn't a button but the blue looks nice")
-                .font(.subheadline)
-            
-            Spacer()
-            
-            Text("version 1.0")
-                .foregroundColor(Color.gray)
-                .padding()
+        NavigationView {
+            VStack {
+                Text("Out To Eat")
+                    .font(.largeTitle)
+                    .padding(.vertical, 150)
+                
+                Text("Brought to you by:")
+                    .font(.title)
+                    .padding(.vertical, 15)
+                
+                Text("Zack Smalley")
+                    .font(.title)
+                    .foregroundColor(Color.blue)
+                
+                Text("(my name isn't a button but the blue looks nice")
+                    .font(.subheadline)
+                
+                Spacer()
+                
+                NavigationLink(destination: Help()) {
+                    Text("Help").font(.title)
+                }
+                
+                Text("version 1.0")
+                    .foregroundColor(Color.gray)
+                    .padding()
+            }
         }
     }
 }

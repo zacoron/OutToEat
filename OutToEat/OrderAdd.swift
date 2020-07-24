@@ -20,31 +20,44 @@ struct OrderAdd: View {
     @State private var orderNotes = ""
     @State private var orderCost = ""
     
+    @State private var showWarning = false
+    @State private var showingAlert = false
+    
     
     var body: some View {
         NavigationView {
-            Form {
-                TextField("Order", text: $orderDetails)
-                TextField("Notes", text: $orderNotes)
-                TextField("Cost", text: $orderCost).keyboardType(.decimalPad)
+            VStack {
+                Form {
+                    TextField("Order", text: $orderDetails)
+                    TextField("Notes", text: $orderNotes)
+                    TextField("Cost", text: $orderCost).keyboardType(.decimalPad)
+                }
+                
+                Spacer()
             }
-            .navigationBarTitle("Add New Restaurant")
+            .navigationBarTitle("Add New Order")
             .navigationBarItems(
                 leading:
                     Button("Close") {
                         self.presentationMode.wrappedValue.dismiss()
                     }.font(.title),
                 trailing:
-                    Button("Save") { // TODO: add warning when trying to save restaurant w/o name
-                        if !self.orderDetails.isEmpty
-                        {
+                    Button("Save") {
+                        if !self.orderDetails.isEmpty {
                             let newOrder = Order(orderDetails: self.orderDetails, orderNotes: self.orderNotes, orderCost: Double(self.orderCost) ?? 0)
                             
                             // horribly ugly way to append the order manually through its direct lineage
                             self.people.items[self.searchPeopleForUUID(id: self.person.id)!].favorites[self.searchFavoritesForUUID(id: self.favorite.id)!].orders.append(newOrder)
                             self.presentationMode.wrappedValue.dismiss()
                         }
-                    }.font(.title)
+                        else { // display a message saying that the order must have a name
+                            self.showWarning = true
+                        }
+                    }
+                    .font(.title)
+                    .alert(isPresented: $showWarning) {
+                        Alert(title: Text("Order Must Have a Name"), dismissButton: .default(Text("Oh, right!")))
+                    }
             ) // end navigationBarItems
         } // end NavigationView
     } // end body
