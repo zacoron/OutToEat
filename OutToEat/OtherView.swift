@@ -14,7 +14,7 @@ struct OtherView: View {
             VStack {
                 Text("Out To Eat")
                     .font(.largeTitle)
-                    .padding(.vertical, 150)
+                    .padding(.vertical, 50)
                 
                 Text("Brought to you by:")
                     .font(.title)
@@ -26,6 +26,27 @@ struct OtherView: View {
                 
                 Text("(my name isn't a button but the blue looks nice")
                     .font(.subheadline)
+                /*
+                Text("Ciara Merrifield")
+                    .foregroundColor(LinearGradient(gradient: Gradient(colors: [Color.pink]), startPoint: .top, endPoint: .bottom))
+                */
+                
+                Spacer()
+                
+                Text("Special thanks to:")
+                    .font(.title)
+                    .padding(.vertical, 75)
+
+                LinearGradient(gradient: Gradient(colors: [.pink, .green]),
+                               startPoint: .leading,
+                               endPoint: .trailing)
+                    .mask(Text("Ciara Merrifield")
+                        .frame(width: 400)
+                        .font(.title)
+                        .padding(.bottom, 25)
+                    )
+                
+                
                 
                 Spacer()
                 
