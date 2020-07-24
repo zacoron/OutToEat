@@ -10,8 +10,9 @@ import SwiftUI
 
 struct PeopleInfo: View {
     @EnvironmentObject var people: People
-    var person: Person
     @EnvironmentObject var restaurants: Restaurants
+    var person: Person
+
     @State private var showingAddFavorite = false
     
     var body: some View {
@@ -42,7 +43,7 @@ struct PeopleInfo: View {
                 
                 List {
                     ForEach(person.favorites) { item in
-                        NavigationLink(destination: InfoFavorite(favorite: item, person: self.person)) {
+                        NavigationLink(destination: InfoFavorite(favorite: self.findFavorite(person: self.person, restaurantName: item.restaurantName)!, person: self.person)) {
                             Text(self.person.favorites[self.person.favorites.firstIndex(of: item)!].restaurantName)
                         }
                     }
@@ -65,6 +66,17 @@ struct PeopleInfo: View {
                 .environmentObject(self.restaurants)
                 .environmentObject(self.people)
         } // end navigationBarItems
+    }
+    
+    func findFavorite(person: Person, restaurantName: String) -> Favorite? {
+        for i in person.favorites {
+            if(i.restaurantName == restaurantName) {
+                print("Found Favorite - \(i.restaurantName) Count: \(person.favorites.count)")
+                return i
+            }
+        }
+        
+        return nil
     }
 }
 

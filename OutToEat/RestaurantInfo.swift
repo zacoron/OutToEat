@@ -45,6 +45,7 @@ struct RestaurantInfo: View {
                     Spacer()
                 }.padding(.horizontal, 10)
                 
+                /* *** LIST OF MATCHING PEOPLE THAT DOESNT QUITE WORK ***
                 // swiftui (imo) doesn't handle loops very well (yet, hopefully). this section loops through each person , then each favorite of each person (i.e. nested for loops). in the inner HStack, i would have liked to define the indexes that i was looking at (from the loops iterations) but swiftui won't allow declarations inside view function builders so i "pretended" to add them as comments so i would know what i'm looking at. the if() statement is basically just using the indexes of each loop to look at every "favorite" name and compare it to the restaurant i am looking at. if they match, it presents a link to the respective "favorite" for whoever the match was found within. it's not a difficult concept, but swiftui apparently wants it to be
                 List {
                     ForEach(people.items) { person in
@@ -54,11 +55,15 @@ struct RestaurantInfo: View {
                                     // let personIndex = self.people.items.firstIndex(of: person)
                                     // let favoriteIndex = self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)
                                     
+                                    
                                     if(self.people.items[self.people.items.firstIndex(of: person)!].favorites[self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)!].restaurantName == self.restaurant.name) {
                                         NavigationLink(destination: InfoFavorite(favorite: favorite, person: person)) {
                                             Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
                                         }
-                                            // Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
+                                    }
+                                    else {
+                                        Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
+                                            .foregroundColor(Color.gray)
                                     }
                                     
                                 }
@@ -67,27 +72,20 @@ struct RestaurantInfo: View {
                         
                     }
                 }
-                /*
+                */
+                
+                
                 List {
                     ForEach(people.items) { person in
-                        Group {
-                            ForEach(self.people.items[person].favorites) { favorite in
-                                Group {
-                                    if people.items[person].favorites[favorite].restaurantName == restaurant.name {
-                                        Text("found one")
-                                        
-                                        NavigationLink(destination: InfoFavorite(favorite: favorite, person: self.person)) {
-                                            Text(self.people.favorites[self.people.favorites.firstIndex(of: favorite)!].restaurantName)
-                                        }
-                                        
-                                    }
+                        Group { // bug in swiftui that requires grouping https://developer.apple.com/forums/thread/130783
+                            if(self.determineIfMatchedFavorite(person: person)!) {
+                                NavigationLink(destination: InfoFavorite(favorite: self.findFavorite(person: person)!, person: person)) {
+                                    Text("\(person.name)")
                                 }
                             }
                         }
                     }
-                    .deleteDisabled(false)
                 }
-                */
                 
             }
 
@@ -101,6 +99,33 @@ struct RestaurantInfo: View {
             }
         ) // end navigationBarItems
     } // end body
+    
+    // determine if the given person has a favorite of the restaurant we are looking for
+    func determineIfMatchedFavorite(person: Person) -> Bool? {
+        for i in person.favorites {
+            if(i.restaurantName == restaurant.name) {
+                // return Text(person.name)
+                return true
+            }
+            else {
+                print("false \(i.personName) - \(restaurant.name) != \(i.restaurantName)")
+            }
+        }
+        
+        // return Text("")
+        return false
+    }
+    
+    // return the favorite of a given person (for use in nav link to directly find the favorite in question)
+    func findFavorite(person: Person) -> Favorite? {
+        for i in person.favorites {
+            if(i.restaurantName == restaurant.name) {
+                return i
+            }
+        }
+        
+        return nil
+    }
 }
 
 struct RestaurantInfo_Previews: PreviewProvider {

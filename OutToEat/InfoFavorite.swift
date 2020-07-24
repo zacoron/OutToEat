@@ -43,10 +43,13 @@ struct InfoFavorite: View {
                 
                 List {
                     ForEach(favorite.orders) { item in
+                        /*
                         NavigationLink(destination: OrderInfo()) {
                             Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
                         }
-                        //Text("\(item.orderDetails)")
+                        */
+                        Text("\(item.orderDetails) - Count: \(self.favorite.orders.count)")
+                        
                     }
                     .deleteDisabled(false)
                 }
