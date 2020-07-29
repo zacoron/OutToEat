@@ -56,7 +56,6 @@ struct RestaurantEdit: View {
     @State var notes = ""
     
     @Environment(\.presentationMode) var presentationMode
-    @State var showScroll = false // keep track of whether we want to jump to the restaurant scroll view
     
     var body: some View {
         VStack {
@@ -88,24 +87,18 @@ struct RestaurantEdit: View {
             
             Spacer()
             
-            Button("Delete") { // TODO: go back to main restaurants screen after deleting
-                if(self.restaurants.items.firstIndex(of: self.restaurant) != nil) { // make sure there is actually something there to delete before attempting to do so
+            Button("Delete") {
+                if(self.restaurants.items.firstIndex(of: self.restaurant) != nil) { // makes sure there is actually something there to delete before attempting to do so
                     self.restaurants.removeAtIndex(index: self.restaurants.items.firstIndex(of: self.restaurant)!)
                 }
-                // self.presentationMode.wrappedValue.dismiss()
-                self.showScroll = true
+                
+                // after deletion, go back to the main restaurants page
+                self.presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
             }
             .padding(.bottom, 50)
             .font(.title)
-            // .navigate(to: RestaurantScroll(), when: $showScroll)
-            // .navigationBarHidden(true)
-            // .navigationBarBackButtonHidden(true)
-            
-            
-            NavigationLink(destination: RestaurantScroll(), isActive: $showScroll) {
-                EmptyView()
-            }
-            
         } // end VStack
         .navigationBarTitle("Editing: \(restaurant.name)")
         .navigationBarItems(
