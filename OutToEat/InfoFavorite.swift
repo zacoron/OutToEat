@@ -60,10 +60,9 @@ struct InfoFavorite: View {
         }
         .navigationBarTitle("\(person.name) - \(favorite.restaurantName)").padding()
         .navigationBarItems(trailing:
-            // TODO: add edit menu for favorites
-            // NavigationLink(destination: PeopleEdit(people: people, person: person)) {
+            NavigationLink(destination: EditFavorite(person: person, favorite: favorite)) {
                 Text("Edit").font(.title)
-            // }
+            }
         )
         .sheet(isPresented: $showingOrderAdd) {
             OrderAdd(favorite: self.favorite, person: self.person)
