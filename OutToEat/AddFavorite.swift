@@ -21,6 +21,7 @@ struct AddFavorite: View {
     
     @State private var showEmptyNameWarning = false
     @State private var showDuplicateWarning = false
+    @State private var showEmptyOrderWarning = false
     
     var body: some View {
         NavigationView {
@@ -44,21 +45,34 @@ struct AddFavorite: View {
                     }.font(.title),
                 trailing:
                     Button("Save") { // TODO: add warning when trying to save restaurant w/o name
-                        if !self.selectedRestaurant.isEmpty
-                        {
+                        if !self.selectedRestaurant.isEmpty {
                             if(self.findDuplicate(restaurant: self.selectedRestaurant) == false) {
-                                let newFavorite = Favorite(
-                                    personName: self.person.name,
-                                    personUUID: self.person.id,
-                                    restaurantName: self.selectedRestaurant,
-                                    restaurantUUID: self.restaurants.items[self.searchRestaurantsForName(name: self.selectedRestaurant)!].id,
-                                    orders: [Order(orderDetails: "", orderNotes: "", orderCost: 5.55)],
-                                    cost: 5.55,
-                                    notes: self.notes
-                                )
-                                
-                                self.people.items[self.searchPeopleForUUID(id: self.person.id)!].favorites.append(newFavorite)
-                                self.presentationMode.wrappedValue.dismiss()
+                                if(!self.order.isEmpty) { // if there is an order to be added
+                                    // create the new order to be added to the new favorite (no relation to the band)
+                                    let newOrder = Order(
+                                        orderDetails: self.order,
+                                        orderNotes: self.notes,
+                                        orderCost: Double(self.cost) ?? 0
+                                    )
+                                    
+                                    // create the new favorite object to be added
+                                    let newFavorite = Favorite(
+                                        personName: self.person.name,
+                                        personUUID: self.person.id,
+                                        restaurantName: self.selectedRestaurant,
+                                        restaurantUUID: self.restaurants.items[self.searchRestaurantsForName(name: self.selectedRestaurant)!].id,
+                                        orders: [newOrder], // add the new order as the initial order for this favorite
+                                        cost: 5.55,
+                                        notes: self.notes
+                                    )
+                                    
+                                    // add the new favorite to the list of favorites for that person
+                                    self.people.items[self.searchPeopleForUUID(id: self.person.id)!].favorites.append(newFavorite)
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                                else { // if the order box is empty
+                                    self.showEmptyOrderWarning = true
+                                }
                             }
                             else {
                                 self.showDuplicateWarning = true
@@ -72,9 +86,12 @@ struct AddFavorite: View {
                         Alert(title: Text("You Must Select a Restaurant to Add"), dismissButton: .default(Text("Oh, right!")))
                     }
             ) // end navigationBarItems
+            .alert(isPresented: $showDuplicateWarning) {
+                Alert(title: Text("This Restaurant Already Exists as a Favorite for this Person"), dismissButton: .default(Text("Oh, right!")))
+            }
         } // end NavigationView
-        .alert(isPresented: $showDuplicateWarning) {
-            Alert(title: Text("This Restaurant Already Exists as a Favorite for this Person"), dismissButton: .default(Text("Oh, right!")))
+        .alert(isPresented: $showEmptyOrderWarning) {
+            Alert(title: Text("You Must Add an Order to this Restaurant"), dismissButton: .default(Text("Oh, right!")))
         }
     } // end body
     
