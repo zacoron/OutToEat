@@ -55,8 +55,29 @@ struct OrderEdit: View {
             trailing:
                 Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
                     // this checks for empty values to determine whether to update or not
+                    if !self.orderDetails.isEmpty {
+                        self.people.setOrderDetails(
+                            personIndex: self.personIndex()!,
+                            favoriteIndex: self.favoriteIndex()!,
+                            orderIndex: self.orderIndex()!,
+                            newDetails: self.orderDetails)
+                    }
                     
-                    let index = self.orderIndex()
+                    if !self.orderNotes.isEmpty {
+                        self.people.setOrderNotes(
+                            personIndex: self.personIndex()!,
+                            favoriteIndex: self.favoriteIndex()!,
+                            orderIndex: self.orderIndex()!,
+                            newNotes: self.orderNotes)
+                    }
+                    
+                    if !self.orderCost.isEmpty {
+                        self.people.setOrderCost(
+                            personIndex: self.personIndex()!,
+                            favoriteIndex: self.favoriteIndex()!,
+                            orderIndex: self.orderIndex()!,
+                            newCost: Double(self.orderCost)!)
+                    }
                     
                     self.presentationMode.wrappedValue.dismiss()
                 }.font(.title)
@@ -66,7 +87,7 @@ struct OrderEdit: View {
     // return the index of the person (no arguments b/c i use the local variables anyway)
     func personIndex() -> Int? {
         // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
-        return people.items.firstIndex(of: person)
+        return people.items.firstIndex(of: person) ?? -1
     }
     
     // return the index of the favorite (no arguments b/c i use the local variables anyway)
@@ -74,7 +95,7 @@ struct OrderEdit: View {
         let personindex = personIndex() ?? -1 // get the index of the person
         
         // print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
-        return people.items[personindex].favorites.firstIndex(of: favorite)
+        return people.items[personindex].favorites.firstIndex(of: favorite) ?? -1
     }
     
     // return the index of the order (no arguments b/c i use the local variables anyway)
@@ -82,8 +103,8 @@ struct OrderEdit: View {
         let personindex = personIndex() ?? -1 // get the index of the person
         let favoriteindex = favoriteIndex() ?? -1 // get the index of the favorite
         
-        print("Order Index: \(people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order) ?? -1)")
-        return people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order)
+        // print("Order Index: \(people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order) ?? -1)")
+        return people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order) ?? -1
     }
 }
 

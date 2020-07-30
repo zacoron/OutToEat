@@ -120,6 +120,18 @@ struct Person: Identifiable, Codable, Equatable {
     public mutating func updateFavoriteNotes(favoriteIndex: Int, newNotes: String) {
         favorites[favoriteIndex].notes = newNotes
     }
+    
+    public mutating func updateOrderDetails(favoriteIndex: Int, orderIndex: Int, newDetails: String) {
+        favorites[favoriteIndex].orders[orderIndex].orderDetails = newDetails
+    }
+    
+    public mutating func updateOrderNotes(favoriteIndex: Int, orderIndex: Int, newNotes: String) {
+        favorites[favoriteIndex].orders[orderIndex].orderNotes = newNotes
+    }
+    
+    public mutating func updateOrderCost(favoriteIndex: Int, orderIndex: Int, newCost: Double) {
+        favorites[favoriteIndex].orders[orderIndex].orderCost = newCost
+    }
 }
 
 class People: ObservableObject {
@@ -173,6 +185,18 @@ class People: ObservableObject {
     
     public func setFavoriteNotes(personIndex: Int, favoriteIndex: Int, newNotes: String) {
         items[personIndex].updateFavoriteNotes(favoriteIndex: favoriteIndex, newNotes: newNotes)
+    }
+    
+    public func setOrderDetails(personIndex: Int, favoriteIndex: Int, orderIndex: Int, newDetails: String) {
+        items[personIndex].updateOrderDetails(favoriteIndex: favoriteIndex, orderIndex: orderIndex, newDetails: newDetails)
+    }
+    
+    public func setOrderNotes(personIndex: Int, favoriteIndex: Int, orderIndex: Int, newNotes: String) {
+        items[personIndex].updateOrderNotes(favoriteIndex: favoriteIndex, orderIndex: orderIndex, newNotes: newNotes)
+    }
+    
+    public func setOrderCost(personIndex: Int, favoriteIndex: Int, orderIndex: Int, newCost: Double) {
+        items[personIndex].updateOrderCost(favoriteIndex: favoriteIndex, orderIndex: orderIndex, newCost: newCost)
     }
 }
 
