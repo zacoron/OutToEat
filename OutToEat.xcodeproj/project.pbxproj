@@ -29,6 +29,7 @@
 		1404B21F24BD4DAC00AB87E9 /* OrderAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */; };
 		1404B22324BD637A00AB87E9 /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1404B22224BD637A00AB87E9 /* OrderInfo.swift */; };
 		148499D224CA992F00E45C18 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148499D124CA992F00E45C18 /* Help.swift */; };
+		14DDBD7824D38191000F6FD3 /* OrderEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DDBD7724D38191000F6FD3 /* OrderEdit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAdd.swift; sourceTree = "<group>"; };
 		1404B22224BD637A00AB87E9 /* OrderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
 		148499D124CA992F00E45C18 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		14DDBD7724D38191000F6FD3 /* OrderEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEdit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				1404B21A24B8401600AB87E9 /* EditFavorite.swift */,
 				1404B21C24BD4C4800AB87E9 /* InfoFavorite.swift */,
 				1404B21E24BD4DAC00AB87E9 /* OrderAdd.swift */,
+				14DDBD7724D38191000F6FD3 /* OrderEdit.swift */,
 				1404B22224BD637A00AB87E9 /* OrderInfo.swift */,
 				1404B21024B4733B00AB87E9 /* OtherView.swift */,
 				148499D124CA992F00E45C18 /* Help.swift */,
@@ -206,6 +209,7 @@
 				1404B20B24B45D1C00AB87E9 /* RestaurantEdit.swift in Sources */,
 				1404B21D24BD4C4800AB87E9 /* InfoFavorite.swift in Sources */,
 				1404B20D24B4715500AB87E9 /* AppView.swift in Sources */,
+				14DDBD7824D38191000F6FD3 /* OrderEdit.swift in Sources */,
 				1404B1FF24B3F92C00AB87E9 /* RestaurantScroll.swift in Sources */,
 				1404B20924B44E4900AB87E9 /* RestaurantInfo.swift in Sources */,
 				1404B20524B4149F00AB87E9 /* RestaurantAdd.swift in Sources */,

@@ -11,6 +11,9 @@ import SwiftUI
 struct OrderInfo: View {
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
+    
+    var person: Person
+    var favorite: Favorite
     @State var order: Order
     var index: Int // the index of the order (1 is added when OrderInfo is called)
     
@@ -43,11 +46,16 @@ struct OrderInfo: View {
             Spacer()
         }
         .navigationBarTitle("Order #\(index)").padding()
+        .navigationBarItems(trailing:
+            NavigationLink(destination: OrderEdit(person: person, favorite: favorite, order: order, index: index)) {
+                Text("Edit").font(.title)
+            }
+        )
     }
 }
 
 struct OrderInfo_Previews: PreviewProvider {
     static var previews: some View {
-        OrderInfo(order: Order(orderDetails: "", orderNotes: "", orderCost: 5.55), index: 0)
+        OrderInfo(person: Person(name: "", notes: ""), favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), cost: 5.55, notes: ""), order: Order(orderDetails: "", orderNotes: "", orderCost: 5.55), index: 0)
     }
 }
