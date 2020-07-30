@@ -56,29 +56,31 @@ struct OrderEdit: View {
                 Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
                     // this checks for empty values to determine whether to update or not
                     
+                    let index = self.orderIndex()
+                    
                     self.presentationMode.wrappedValue.dismiss()
                 }.font(.title)
         ) // end navigationBarItems
     } // end body
     
-    // return the index of the person
-    func personIndex(person: Person) -> Int? {
+    // return the index of the person (no arguments b/c i use the local variables anyway)
+    func personIndex() -> Int? {
         // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
         return people.items.firstIndex(of: person)
     }
     
-    // return the index of the favorite
-    func favoriteIndex(person: Person, favorite: Favorite) -> Int? {
-        let personindex = personIndex(person: person) ?? -1 // get the index of the person
+    // return the index of the favorite (no arguments b/c i use the local variables anyway)
+    func favoriteIndex() -> Int? {
+        let personindex = personIndex() ?? -1 // get the index of the person
         
         // print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
         return people.items[personindex].favorites.firstIndex(of: favorite)
     }
     
-    // return the index of the order
-    func orderIndex(person: Person, favorite: Favorite, order: Order) -> Int? {
-        let personindex = personIndex(person: person) ?? -1 // get the index of the person
-        let favoriteindex = favoriteIndex(person: person, favorite: favorite) ?? -1 // get the index of the favorite
+    // return the index of the order (no arguments b/c i use the local variables anyway)
+    func orderIndex() -> Int? {
+        let personindex = personIndex() ?? -1 // get the index of the person
+        let favoriteindex = favoriteIndex() ?? -1 // get the index of the favorite
         
         print("Order Index: \(people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order) ?? -1)")
         return people.items[personindex].favorites[favoriteindex].orders.firstIndex(of: order)
