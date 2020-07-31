@@ -125,6 +125,10 @@ struct Person: Identifiable, Codable, Equatable {
         favorites[favoriteIndex].orders.append(newOrder)
     }
     
+    public mutating func deleteOrderAtIndex(favoriteIndex: Int, orderIndex: Int) {
+        favorites[favoriteIndex].orders.remove(at: orderIndex)
+    }
+    
     public mutating func updateOrderDetails(favoriteIndex: Int, orderIndex: Int, newDetails: String) {
         favorites[favoriteIndex].orders[orderIndex].orderDetails = newDetails
     }
@@ -193,6 +197,10 @@ class People: ObservableObject {
     
     public func addOrder(personIndex: Int, favoriteIndex: Int, newOrder: Order) {
         items[personIndex].addOrder(favoriteIndex: favoriteIndex, newOrder: newOrder)
+    }
+    
+    public func deleteOrder(personIndex: Int, favoriteIndex: Int, orderIndex: Int) {
+        items[personIndex].deleteOrderAtIndex(favoriteIndex: favoriteIndex, orderIndex: orderIndex)
     }
     
     public func setOrderDetails(personIndex: Int, favoriteIndex: Int, orderIndex: Int, newDetails: String) {

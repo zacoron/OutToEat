@@ -42,6 +42,19 @@ struct InfoFavorite: View {
                     }
                 }.padding(.horizontal, 10)
                 
+                List {
+                    ForEach(favorite.orders) { item in
+                        NavigationLink(destination: OrderInfo(
+                            person: self.person,
+                            favorite: self.favorite,
+                            order: item,
+                            index: (self.favorite.orders.firstIndex(of: item)!) + 1)) {
+                                Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
+                        }
+                    }
+                }
+                
+                /*
                 // TODO: make sure orders added through the people -> favorites -> add order button appear automatically
                 List {
                     ForEach(favorite.orders) { item in
@@ -55,6 +68,7 @@ struct InfoFavorite: View {
                     }
                     .deleteDisabled(false)
                 }
+                */
             }
             
             Spacer()
@@ -75,15 +89,16 @@ struct InfoFavorite: View {
     /**** INDEX RETRIEVAL FUNCTIONS ****/
     // return the index of the person (no arguments b/c i use the local variables anyway)
     func personIndex() -> Int? {
-        // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
-        return people.items.firstIndex(of: person) ?? -1
+        print("Person Name:\(person.name)")
+        print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
+        return people.items.firstIndex { $0.id == person.id} ?? -1
     }
     
     // return the index of the favorite (no arguments b/c i use the local variables anyway)
     func favoriteIndex() -> Int? {
         let personindex = personIndex() ?? -1 // get the index of the person
         
-        // print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
+        print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
         return people.items[personindex].favorites.firstIndex(of: favorite) ?? -1
     }
 }

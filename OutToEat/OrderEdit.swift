@@ -50,6 +50,21 @@ struct OrderEdit: View {
             }
             
             Spacer()
+            
+            Button("Delete") {
+                if(self.orderIndex() != -1) { // make sure there is actually something to delete
+                    self.people.deleteOrder(
+                        personIndex: self.personIndex()!,
+                        favoriteIndex: self.favoriteIndex()!,
+                        orderIndex: self.orderIndex()!)
+                }
+                
+                self.presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            .padding(.bottom, 50)
+            .font(.title)
         } // end VStack
         .navigationBarTitle("Editing Order #\(index)")
         .navigationBarItems(

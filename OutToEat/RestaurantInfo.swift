@@ -82,7 +82,6 @@ struct RestaurantInfo: View {
             }
         }
         
-        // return Text("")
         return false
     }
     
