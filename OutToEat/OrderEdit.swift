@@ -84,6 +84,7 @@ struct OrderEdit: View {
         ) // end navigationBarItems
     } // end body
     
+    /**** INDEX RETRIEVAL FUNCTIONS ****/
     // return the index of the person (no arguments b/c i use the local variables anyway)
     func personIndex() -> Int? {
         // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")

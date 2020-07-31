@@ -53,10 +53,9 @@ struct PeopleAdd: View {
                         }
                 ) // end navigationBarItems
                 .padding(.bottom, 20)
-            
-                Text("Note: Restaurants can be added by selecting this person in the \"People\" tab")
-                    .padding(50)
-                    .foregroundColor(Color.gray)
+                
+                // add a quick note at the bottom of the screen
+                Text("Note: Restaurants can be added by selecting this person in the \"People\" tab").padding(50).foregroundColor(Color.gray)
             } // end VStack
             .alert(isPresented: $showDuplicateNameWarning) {
                 Alert(title: Text("A Person With This Name Already Exists"), dismissButton: .default(Text("Oh, right!")))

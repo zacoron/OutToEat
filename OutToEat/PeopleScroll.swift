@@ -43,12 +43,7 @@ struct PeopleScroll: View {
             }
         } // end NavigationView
     }
-    
-    /* dont need anymore
-    func removeItems(at offsets: IndexSet) {
-        people.items.remove(atOffsets: offsets)
-    }
-    */
+
 }
 
 struct PeopleScroll_Previews: PreviewProvider {

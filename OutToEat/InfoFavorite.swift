@@ -11,8 +11,9 @@ import SwiftUI
 struct InfoFavorite: View {
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
-    var favorite: Favorite
     var person: Person
+    var favorite: Favorite
+    
     
     @State private var showingOrderAdd = false
     
@@ -32,7 +33,7 @@ struct InfoFavorite: View {
                 HStack {
                     Text("Orders:").font(.title)
                     Spacer()
-                    NavigationLink(destination: OrderAdd(favorite: self.favorite, person: self.person)) {
+                    NavigationLink(destination: OrderAdd(person: self.person, favorite: self.favorite)) {
                         Button(action: {
                             self.showingOrderAdd = true
                         }) {
@@ -44,8 +45,12 @@ struct InfoFavorite: View {
                 // TODO: make sure orders added through the people -> favorites -> add order button appear automatically
                 List {
                     ForEach(favorite.orders) { item in
-                        NavigationLink(destination: OrderInfo(person: self.person, favorite: self.favorite, order: item, index: (self.favorite.orders.firstIndex(of: item)!) + 1)) {
-                            Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
+                        NavigationLink(destination: OrderInfo(
+                            person: self.person,
+                            favorite: self.favorite,
+                            order: item,
+                            index: (self.favorite.orders.firstIndex(of: item)!) + 1)) {
+                                Text(self.favorite.orders[self.favorite.orders.firstIndex(of: item)!].orderDetails)
                         }
                     }
                     .deleteDisabled(false)
@@ -61,15 +66,30 @@ struct InfoFavorite: View {
             }
         )
         .sheet(isPresented: $showingOrderAdd) {
-            OrderAdd(favorite: self.favorite, person: self.person)
+            OrderAdd(person: self.person, favorite: self.favorite)
                 .environmentObject(self.restaurants)
                 .environmentObject(self.people)
         } // end navigationBarItems
+    } // end body
+    
+    /**** INDEX RETRIEVAL FUNCTIONS ****/
+    // return the index of the person (no arguments b/c i use the local variables anyway)
+    func personIndex() -> Int? {
+        // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
+        return people.items.firstIndex(of: person) ?? -1
+    }
+    
+    // return the index of the favorite (no arguments b/c i use the local variables anyway)
+    func favoriteIndex() -> Int? {
+        let personindex = personIndex() ?? -1 // get the index of the person
+        
+        // print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
+        return people.items[personindex].favorites.firstIndex(of: favorite) ?? -1
     }
 }
 
 struct InfoFavorite_Previews: PreviewProvider {
     static var previews: some View {
-        InfoFavorite(favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), orders: [Order(orderDetails: "", orderNotes: "", orderCost: 5.55)], cost: 5.55, notes: ""), person: Person(name: "", notes: ""))
+        InfoFavorite( person: Person(name: "", notes: ""), favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), orders: [Order(orderDetails: "", orderNotes: "", orderCost: 5.55)], cost: 5.55, notes: ""))
     }
 }

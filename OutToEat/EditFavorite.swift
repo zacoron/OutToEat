@@ -41,8 +41,10 @@ struct EditFavorite: View {
             Spacer()
             
             Button("Delete") {
-                if(self.people.items[self.people.items.firstIndex(of: self.person)!].favorites.firstIndex(of: self.favorite) != nil) { // makes sure there is actually something there to delete before attempting to do so
-                    self.people.deleteFavorite(personIndex: self.people.items.firstIndex(of: self.person)!, favoriteIndex: self.people.items[self.people.items.firstIndex(of: self.person)!].favorites.firstIndex(of: self.favorite)!)
+                if(self.favoriteIndex() != -1) { // makes sure there is actually something there to delete before attempting to do so
+                    self.people.deleteFavorite(
+                        personIndex: self.personIndex()!,
+                        favoriteIndex: self.favoriteIndex()!)
                 }
                 
                 self.presentationMode.wrappedValue.dismiss()
@@ -58,12 +60,30 @@ struct EditFavorite: View {
                 Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
                     // this checks for empty values to determine whether to update or not
                     if !self.notes.isEmpty {
-                        self.people.setFavoriteNotes(personIndex: self.people.items.firstIndex(of: self.person)!, favoriteIndex: self.people.items[self.people.items.firstIndex(of: self.person)!].favorites.firstIndex(of: self.favorite)!, newNotes: self.notes)
+                        self.people.setFavoriteNotes(
+                            personIndex: self.personIndex()!,
+                            favoriteIndex: self.favoriteIndex()!,
+                            newNotes: self.notes)
                     }
                     
                     self.presentationMode.wrappedValue.dismiss()
                 }.font(.title)
         ) // end navigationBarItems
+    } // end body
+    
+    /**** INDEX RETRIEVAL FUNCTIONS ****/
+    // return the index of the person (no arguments b/c i use the local variables anyway)
+    func personIndex() -> Int? {
+        // print("Person Index: \(people.items.firstIndex(of: person) ?? -1)")
+        return people.items.firstIndex(of: person) ?? -1
+    }
+    
+    // return the index of the favorite (no arguments b/c i use the local variables anyway)
+    func favoriteIndex() -> Int? {
+        let personindex = personIndex() ?? -1 // get the index of the person
+        
+        // print("Favorite Index: \(people.items[personindex].favorites.firstIndex(of: favorite) ?? -1)")
+        return people.items[personindex].favorites.firstIndex(of: favorite) ?? -1
     }
 }
 

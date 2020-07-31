@@ -28,8 +28,8 @@ struct AddFavorite: View {
             Form {
                 Picker(selection: $selectedRestaurant, label: Text("Restaurant")) {
                     ForEach(restaurants.items) { item in
-                        Text(self.restaurants.items[self.restaurants.items.firstIndex(of: item)!].name)
-                            .tag(self.restaurants.items[self.restaurants.items.firstIndex(of: item)!].name)
+                        Text(self.restaurants.items[self.restaurantIndex(restaurant: item)!].name)
+                            .tag(self.restaurants.items[self.restaurantIndex(restaurant: item)!].name)
                     }
                 } // end restaurant name Picker
                 TextField("Order", text: $order)
@@ -112,6 +112,13 @@ struct AddFavorite: View {
             }
         }
         return false // if a duplicate name is not found
+    }
+    
+    /**** INDEX RETRIEVAL FUNCTIONS ****/
+    // return the index of the restaurant(pass arguments b/c this is used in loop)
+    func restaurantIndex(restaurant: Restaurant) -> Int? {
+        // print("Restaurant Index: \(restaurants.items.firstIndex(of: restaurant) ?? -1)")
+        return restaurants.items.firstIndex(of: restaurant) ?? -1
     }
     
 }

@@ -79,7 +79,7 @@ struct RestaurantInfo: View {
                     ForEach(people.items) { person in
                         Group { // bug in swiftui that requires grouping https://developer.apple.com/forums/thread/130783
                             if(self.determineIfMatchedFavorite(person: person)!) {
-                                NavigationLink(destination: InfoFavorite(favorite: self.findFavorite(person: person)!, person: person)) {
+                                NavigationLink(destination: InfoFavorite(person: person, favorite: self.findFavorite(person: person)!)) {
                                     Text("\(person.name)")
                                 }
                             }

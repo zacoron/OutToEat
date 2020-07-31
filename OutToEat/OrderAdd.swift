@@ -13,8 +13,9 @@ struct OrderAdd: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
-    @State var favorite: Favorite
     @State var person: Person
+    @State var favorite: Favorite
+    
     
     @State private var orderDetails = ""
     @State private var orderNotes = ""
@@ -73,6 +74,6 @@ struct OrderAdd: View {
 
 struct OrderAdd_Previews: PreviewProvider {
     static var previews: some View {
-        OrderAdd(favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), cost: 5.55, notes: ""), person: Person(name: "", notes: ""))
+        OrderAdd(person: Person(name: "", notes: ""), favorite: Favorite(personName: "", personUUID: UUID(), restaurantName: "", restaurantUUID: UUID(), cost: 5.55, notes: ""))
     }
 }

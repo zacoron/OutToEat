@@ -43,8 +43,10 @@ struct PeopleInfo: View {
                 
                 List {
                     ForEach(person.favorites) { item in
-                        NavigationLink(destination: InfoFavorite(favorite: self.findFavorite(person: self.person, restaurantName: item.restaurantName)!, person: self.person)) {
-                            Text(self.person.favorites[self.person.favorites.firstIndex(of: item)!].restaurantName)
+                        NavigationLink(destination: InfoFavorite(
+                            person: self.person,
+                            favorite: self.findFavorite(person: self.person, restaurantName: item.restaurantName)!)) {
+                                Text(self.person.favorites[self.person.favorites.firstIndex(of: item)!].restaurantName)
                         }
                     }
                     .deleteDisabled(false)
@@ -68,6 +70,7 @@ struct PeopleInfo: View {
         } // end navigationBarItems
     }
     
+    // returns the favorite given the name of the restaurant
     func findFavorite(person: Person, restaurantName: String) -> Favorite? {
         for i in person.favorites {
             if(i.restaurantName == restaurantName) {
