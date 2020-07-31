@@ -9,9 +9,8 @@
 import SwiftUI
 
 struct AddFavorite: View {
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var restaurants: Restaurants
     @EnvironmentObject var people: People
+    @EnvironmentObject var restaurants: Restaurants
     @State var person: Person
     
     @State private var selectedRestaurant = ""
@@ -22,6 +21,8 @@ struct AddFavorite: View {
     @State private var showEmptyNameWarning = false
     @State private var showDuplicateWarning = false
     @State private var showEmptyOrderWarning = false
+    
+        @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -44,7 +45,7 @@ struct AddFavorite: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }.font(.title),
                 trailing:
-                    Button("Save") { // TODO: add warning when trying to save restaurant w/o name
+                    Button("Save") {
                         if !self.selectedRestaurant.isEmpty {
                             if(self.findDuplicate(restaurant: self.selectedRestaurant) == false) {
                                 if(!self.order.isEmpty) { // if there is an order to be added
@@ -95,10 +96,18 @@ struct AddFavorite: View {
         }
     } // end body
     
-    // TODO: search restaurants by UUID instead of name (in case of duplicate named restaurants)
+    // TODO: search restaurants by UUID instead of name (in case of duplicate named restaurants) STARTED BELOW
     func searchRestaurantsForName(name: String) -> Int? {
         return restaurants.items.firstIndex { $0.name == self.selectedRestaurant }
     }
+    
+    /*
+    func searchRestaurantsForUUID(name: UUID) -> Int? {
+        let index = restaurants.items.firstIndex { $0.name == self.selectedRestaurant }
+        let tempRestaurant = restaurants.items[index!]
+        return restaurants.items.firstIndex { $0.id == tempRestaurant.id }
+    }
+     */
     
     func searchPeopleForUUID(id: UUID) -> Int? {
         return people.items.firstIndex { $0.id == self.person.id }

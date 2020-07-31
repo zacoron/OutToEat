@@ -11,6 +11,7 @@ import SwiftUI
 // TODO: make sure i lookup orders by id
 struct OrderEdit: View {
     @EnvironmentObject var people: People
+    @EnvironmentObject var restaurants: Restaurants
     var person: Person
     var favorite: Favorite
     var order: Order

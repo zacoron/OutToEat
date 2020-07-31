@@ -11,6 +11,7 @@ import SwiftUI
 // TODO: change observed object to environment object
 struct PeopleEdit: View {
     @ObservedObject var people: People
+    @EnvironmentObject var restaurants: Restaurants
     var person: Person
 
     @State var name:String = ""

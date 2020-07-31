@@ -8,47 +8,9 @@
 
 import SwiftUI
 
-extension View {
-
-    /// Navigate to a new view.
-    /// - Parameters:
-    ///   - view: View to navigate to.
-    ///   - binding: Only navigates when this condition is `true`.
-    func navigate<SomeView: View>(to view: SomeView, when binding: Binding<Bool>) -> some View {
-        modifier(NavigateModifier(destination: view, binding: binding))
-    }
-}
-
-
-// MARK: - NavigateModifier
-fileprivate struct NavigateModifier<SomeView: View>: ViewModifier {
-
-    // MARK: Private properties
-    fileprivate let destination: SomeView
-    @Binding fileprivate var binding: Bool
-
-
-    // MARK: - View body
-    fileprivate func body(content: Content) -> some View {
-        NavigationView {
-            ZStack {
-                content
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true)
-                NavigationLink(destination: destination
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true),
-                               isActive: $binding) {
-                    EmptyView()
-                }
-            }
-        }
-    }
-}
-
 // addMode instead of presentationMode???
 struct RestaurantEdit: View {
-    @ObservedObject var restaurants: Restaurants
+    @EnvironmentObject var restaurants: Restaurants
     var restaurant: Restaurant
     
     @State var name = ""
@@ -64,7 +26,8 @@ struct RestaurantEdit: View {
             HStack {
                 Text("Name:").font(.title)
                 Spacer()
-                TextField(restaurant.name, text: $name).font(.title)
+                Text(restaurant.name).font(.title)
+                // TextField(restaurant.name, text: $name).font(.title) // removed for time-being
             }.padding(.horizontal, 10)
             
             Divider()
@@ -105,27 +68,42 @@ struct RestaurantEdit: View {
             trailing:
                 Button("Save") { // TODO: don't want to overwrite notes sooo figure something out for that
                     // this checks each box for empty values to determine whether to update or not
+                    /* editing restaurant names causes a lot of problems so remove this feature for now
                     if !self.name.isEmpty {
-                        self.restaurants.setName(newName: self.name, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                        self.restaurants.setName(
+                            newName: self.name,
+                            index: self.restaurantIndex()!)
                     }
+                    */
                     if !self.type.isEmpty {
-                        self.restaurants.setType(newType: self.type, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                        self.restaurants.setType(
+                            newType: self.type,
+                            index: self.restaurantIndex()!)
                     }
                     // TODO: 121 throws error if finds nil (when editing type and notes at same time on restaurant entry that has not been edited before). dont know why
                     if !self.notes.isEmpty {
-                        self.restaurants.setNotes(newNotes: self.notes, index: self.restaurants.items.firstIndex(of: self.restaurant)!)
+                        self.restaurants.setNotes(
+                            newNotes: self.notes,
+                            index: self.restaurantIndex()!)
                     }
                     
                     self.presentationMode.wrappedValue.dismiss()
                 }.font(.title)
         ) // end navigationBarItems
     } // end body
+    
+    /**** INDEX RETRIEVAL FUNCTIONS ****/
+    // return the index of the restaurant (no arguments b/c i use the local variables anyway)
+    func restaurantIndex() -> Int? {
+        // print("Restaurant Index: \(restaurants.items.firstIndex(of: restaurant) ?? -1)")
+        return restaurants.items.firstIndex(of: restaurant) ?? -1
+    }
 }
 
 
 struct RestaurantEdit_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantEdit(restaurants: Restaurants(), restaurant: Restaurant(name: "", type: "", notes: ""))
+        RestaurantEdit(restaurant: Restaurant(name: "", type: "", notes: ""))
     }
 }
 

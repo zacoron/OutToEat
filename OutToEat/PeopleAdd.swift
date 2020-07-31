@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct PeopleAdd: View {
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var people: People
+    @EnvironmentObject var restaurants: Restaurants
     
     @State private var name = ""
     @State private var notes = ""
     @State private var favorite = ""
     @State private var showEmptyNameWarning = false
     @State private var showDuplicateNameWarning = false
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {

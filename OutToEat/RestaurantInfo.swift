@@ -45,36 +45,6 @@ struct RestaurantInfo: View {
                     Spacer()
                 }.padding(.horizontal, 10)
                 
-                /* *** LIST OF MATCHING PEOPLE THAT DOESNT QUITE WORK ***
-                // swiftui (imo) doesn't handle loops very well (yet, hopefully). this section loops through each person , then each favorite of each person (i.e. nested for loops). in the inner HStack, i would have liked to define the indexes that i was looking at (from the loops iterations) but swiftui won't allow declarations inside view function builders so i "pretended" to add them as comments so i would know what i'm looking at. the if() statement is basically just using the indexes of each loop to look at every "favorite" name and compare it to the restaurant i am looking at. if they match, it presents a link to the respective "favorite" for whoever the match was found within. it's not a difficult concept, but swiftui apparently wants it to be
-                List {
-                    ForEach(people.items) { person in
-                        Group { // bug in swiftui that requires grouping https://developer.apple.com/forums/thread/130783
-                            ForEach(self.people.items[self.people.items.firstIndex(of: person)!].favorites) { favorite in
-                                HStack {
-                                    // let personIndex = self.people.items.firstIndex(of: person)
-                                    // let favoriteIndex = self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)
-                                    
-                                    
-                                    if(self.people.items[self.people.items.firstIndex(of: person)!].favorites[self.people.items[self.people.items.firstIndex(of: person)!].favorites.firstIndex(of: favorite)!].restaurantName == self.restaurant.name) {
-                                        NavigationLink(destination: InfoFavorite(favorite: favorite, person: person)) {
-                                            Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
-                                        }
-                                    }
-                                    else {
-                                        Text(self.people.items[self.people.items.firstIndex(of: person)!].name)
-                                            .foregroundColor(Color.gray)
-                                    }
-                                    
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-                */
-                
-                
                 List {
                     ForEach(people.items) { person in
                         Group { // bug in swiftui that requires grouping https://developer.apple.com/forums/thread/130783
@@ -94,7 +64,7 @@ struct RestaurantInfo: View {
         } // end VStack
         .navigationBarTitle("Info")
         .navigationBarItems(trailing:
-            NavigationLink(destination: RestaurantEdit(restaurants: restaurants, restaurant: restaurant)) {
+            NavigationLink(destination: RestaurantEdit(restaurant: restaurant)) {
                 Text("Edit").font(.title)
             }
         ) // end navigationBarItems

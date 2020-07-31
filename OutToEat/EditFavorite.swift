@@ -11,6 +11,7 @@ import SwiftUI
 // TODO: make sure deleting a favorite immediately removes it from the list when traveling back to the personview
 struct EditFavorite: View {
     @EnvironmentObject var people: People
+    @EnvironmentObject var restaurants: Restaurants
     var person: Person
     var favorite: Favorite
     

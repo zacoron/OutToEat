@@ -43,12 +43,6 @@ struct RestaurantScroll: View {
             }
         } // end NavigationView
     }
-    
-    /* don't need anymore
-    func removeItems(at offsets: IndexSet) {
-        restaurants.items.remove(atOffsets: offsets)
-    }
-    */
 }
 
 
