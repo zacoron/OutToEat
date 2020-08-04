@@ -74,7 +74,7 @@ struct PeopleInfo: View {
     func findFavorite(person: Person, restaurantName: String) -> Favorite? {
         for i in person.favorites {
             if(i.restaurantName == restaurantName) {
-                print("Found Favorite - \(i.restaurantName) Count: \(person.favorites.count)")
+                // print("Found Favorite - \(i.restaurantName) Count: \(person.favorites.count)")
                 return i
             }
         }

@@ -77,9 +77,11 @@ struct RestaurantInfo: View {
                 // return Text(person.name)
                 return true
             }
+            /*
             else {
                 print("false \(i.personName) - \(restaurant.name) != \(i.restaurantName)")
             }
+            */
         }
         
         return false

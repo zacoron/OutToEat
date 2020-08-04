@@ -11,7 +11,7 @@ import SwiftUI
 struct AddFavorite: View {
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
-    @State var person: Person
+    var person: Person
     
     @State private var selectedRestaurant = ""
     @State private var order = ""

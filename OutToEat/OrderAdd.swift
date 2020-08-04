@@ -12,8 +12,8 @@ import SwiftUI
 struct OrderAdd: View {
     @EnvironmentObject var people: People
     @EnvironmentObject var restaurants: Restaurants
-    @State var person: Person
-    @State var favorite: Favorite
+    var person: Person
+    var favorite: Favorite
     
     
     @State private var orderDetails = ""
@@ -48,10 +48,14 @@ struct OrderAdd: View {
                         if !self.orderDetails.isEmpty {
                             let newOrder = Order(orderDetails: self.orderDetails, orderNotes: self.orderNotes, orderCost: Double(self.orderCost) ?? 0)
                             
+                            self.people.items[self.personIndex()!].favorites[self.favoriteIndex()!].orders.append(newOrder)
+                            
+                            /*
                             self.people.addOrder(
                                 personIndex: self.personIndex()!,
                                 favoriteIndex: self.favoriteIndex()!,
                                 newOrder: newOrder)
+                            */
 
                             self.presentationMode.wrappedValue.dismiss()
                         }

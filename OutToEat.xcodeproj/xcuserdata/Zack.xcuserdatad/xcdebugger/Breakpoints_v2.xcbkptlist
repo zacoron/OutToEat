@@ -30,10 +30,42 @@
             filePath = "OutToEat/InfoFavorite.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "personIndex()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2AA27465-400D-4F94-A272-7DAAA123B683 - bad420cb76130242"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OutToEat.InfoFavorite.personIndex() -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "OutToEat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Zack%201/Documents/OutToEat/OutToEat/InfoFavorite.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "3627">
+               </Location>
+               <Location
+                  uuid = "2AA27465-400D-4F94-A272-7DAAA123B683 - 3a0cb9bfb0a2aeff"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (OutToEat.Person) -&gt; Swift.Bool in OutToEat.InfoFavorite.personIndex() -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "OutToEat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Zack%201/Documents/OutToEat/OutToEat/InfoFavorite.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "101">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

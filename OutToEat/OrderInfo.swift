@@ -14,7 +14,7 @@ struct OrderInfo: View {
     
     var person: Person
     var favorite: Favorite
-    @State var order: Order
+    var order: Order
     var index: Int // the index of the order (1 is added when OrderInfo is called)
     
     var body: some View {
